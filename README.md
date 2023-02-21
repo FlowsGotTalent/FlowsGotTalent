@@ -1,8 +1,11 @@
 # Flows Got Talent
+########################
 
+# Front End 
+
+## Project Setup
 ### Main requirement:
 Vue3 Vueitfy3, Materio Theme
-## Project Setup
 
 ```sh
 npm install
