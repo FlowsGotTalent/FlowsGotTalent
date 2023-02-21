@@ -1,5 +1,7 @@
 # Flows Got Talent
 
+### Main requirement:
+Vue3 Vueitfy3, Materio Theme
 ## Project Setup
 
 ```sh
