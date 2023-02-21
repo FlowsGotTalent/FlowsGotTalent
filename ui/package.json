@@ -1,6 +1,6 @@
 {
     "name": "flows-got-talent",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "scripts": {
         "dev": "npm run build:icons && vite --host",
         "build": "npm run build:icons && vite build",
