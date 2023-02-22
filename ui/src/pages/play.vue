@@ -1,22 +1,5 @@
 <script setup>
-import avatar1 from '@/assets/images/avatars/avatar-1.png'
-import avatar2 from '@/assets/images/avatars/avatar-2.png'
-import avatar3 from '@/assets/images/avatars/avatar-3.png'
-import avatar4 from '@/assets/images/avatars/avatar-4.png'
-import eCommerce2 from '@/assets/images/eCommerce/2.png'
-import pages1 from '@/assets/images/pages/1.png'
-import pages2 from '@/assets/images/pages/2.png'
-import pages3 from '@/assets/images/pages/3.png'
-import pages5 from '@/assets/images/pages/5.jpg'
-import pages6 from '@/assets/images/pages/6.jpg'
-
-const avatars = [
-  avatar1,
-  avatar2,
-  avatar3,
-  avatar4,
-]
-const isCardDetailsVisible = ref(false)
+import playerProfile from '@/views/games/PlayerProfile.vue'
 </script>
 
 <template>
@@ -41,113 +24,22 @@ const isCardDetailsVisible = ref(false)
     </VCol>
   </VRow>
   <VRow class="match-height">
-    <VCol cols="1"></VCol>
+    <VCol cols="0" md="1" lg="1" xs="0"></VCol>
     <VCol
-      cols="4"
-      md="4"
+      cols="2"
+      md="2"
+      xs="4"
     >
-      <h2 class="text-center mx-auto">Player 1 </h2>
-      <!-- 👉 Player 1 -->
-      <VCard>
-        <VImg :src="pages2"/>
-
-        <VCardText class="position-relative">
-          <!-- User Avatar -->
-          <VAvatar
-            size="75"
-            class="avatar-center"
-            :image="avatar1"
-          />
-
-          <!-- Title, Subtitle & Action Button -->
-          <div class="d-flex justify-space-between flex-wrap pt-8">
-            <div class="me-2 mb-2">
-              <VCardTitle class="pa-0">
-                Robert Meyer
-              </VCardTitle>
-              <VCardSubtitle class="text-caption pa-0">
-                London, UK
-              </VCardSubtitle>
-            </div>
-            <VBtn>send request</VBtn>
-            <VRating
-              :model-value="5"
-              readonly
-              class="me-3"
-              density="compact"
-            />
-            <span>5 Star | 98 reviews</span>
-          </div>
-
-          <!--  Mutual Friends -->
-          <div class="d-flex justify-space-between align-center mt-8">
-            <span class="font-weight-medium">18 mutual friends</span>
-
-            <div class="v-avatar-group">
-              <VAvatar
-                v-for="avatar in avatars"
-                :key="avatar"
-                :image="avatar"
-                size="45"
-              />
-            </div>
-          </div>
-        </VCardText>
-      </VCard>
+      <playerProfile :you="true"/>
     </VCol>
-    <VCol cols="2"></VCol>
+    <VCol cols="6" xs="4"></VCol>
 
     <VCol
-      cols="4"
-      md="4"
+      cols="2"
+      md="2"
+      xs="34"
     >
-      <h2 class="text-center mx-auto">Player 2</h2>
-      <VCard>
-        <VImg :src="pages2"/>
-
-        <VCardText class="position-relative">
-          <!-- User Avatar -->
-          <VAvatar
-            size="75"
-            class="avatar-center"
-            :image="avatar1"
-          />
-
-          <!-- Title, Subtitle & Action Button -->
-          <div class="d-flex justify-space-between flex-wrap pt-8">
-            <div class="me-2 mb-2">
-              <VCardTitle class="pa-0">
-                Robert Meyer
-              </VCardTitle>
-              <VCardSubtitle class="text-caption pa-0">
-                London, UK
-              </VCardSubtitle>
-            </div>
-            <VBtn>send request</VBtn>
-            <VRating
-              :model-value="5"
-              readonly
-              class="me-3"
-              density="compact"
-            />
-            <span>5 Star | 98 reviews</span>
-          </div>
-
-          <!--  Mutual Friends -->
-          <div class="d-flex justify-space-between align-center mt-8">
-            <span class="font-weight-medium">18 mutual friends</span>
-
-            <div class="v-avatar-group">
-              <VAvatar
-                v-for="avatar in avatars"
-                :key="avatar"
-                :image="avatar"
-                size="45"
-              />
-            </div>
-          </div>
-        </VCardText>
-      </VCard>
+      <playerProfile :you="false"/>
     </VCol>
   </VRow>
 
