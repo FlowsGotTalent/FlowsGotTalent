@@ -27,7 +27,6 @@ export default {
       displayName: this.name,
       displayAddress: 'test',
       rating: false,
-
     }
   },
   mounted() {
@@ -39,22 +38,11 @@ export default {
         dictionaries: [adjectives, animals]
       }).replace('_', ' ')
     }
-  }
+
+  },
+  methods: {}
 }
 </script>
-<style>
-.pfp img {
-  border-radius: 50%;
-  height: 100%;
-  width: 100%;
-  display: block;
-}
-
-.pfp {
-  position: relative;
-  margin-top: -120px !important;
-}
-</style>
 <template>
   <div>
     <h2 class="text-center mx-auto" v-if="you">
@@ -109,3 +97,17 @@ export default {
     </VCard>
   </div>
 </template>
+<style>
+.pfp img {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.pfp {
+  position: relative;
+  margin-top: -120px !important;
+}
+</style>
+
