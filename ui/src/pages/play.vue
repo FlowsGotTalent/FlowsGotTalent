@@ -12,7 +12,8 @@ export default {
       display2Name: '',
       player1Address: 'test1',
       player2Address: 'test2',
-      admin:true,
+      admin: true,
+      currentRound: 1,
     }
   },
   mounted() {
@@ -65,10 +66,19 @@ export default {
       md="2"
       xs="4"
     >
-      <playerProfile :you="true" :displayName="display1Name" :displayAddress="player1Address"/>
+      <playerProfile class="player1main" :you="true" :displayName="display1Name" :displayAddress="player1Address"/>
     </VCol>
     <VCol cols="6" xs="4" id="gameDiv">
-      <spr :display2Name="display2Name" :admin="admin"/>
+      <div v-if="!match">
+        <h4 class="text-center ma-4">Finding a worthy adversary...</h4>
+        <p class="text-center">If no opponent is found you will be matched with computer player.</p>
+        <p class="text-center text-sm">Computer players use PFP NFTs from the pool of real players.<br>(In the future this will be limited to those being lent out FGT).</p>
+      </div>
+      <div v-else>
+        <div v-if="!currentRound || currentRound==1">
+          <spr :display2Name="display2Name" :admin="admin"/>
+        </div>
+      </div>
     </VCol>
 
     <VCol
@@ -76,7 +86,8 @@ export default {
       md="2"
       xs="34"
     >
-      <playerProfile :you="false" :displayName="display2Name" :displayAddress="player2Address"/>
+      <playerProfile class="player2main" :class="{nomatch:!match}" :you="false" :displayName="display2Name"
+                     :displayAddress="player2Address"/>
     </VCol>
   </VRow>
 
@@ -103,15 +114,17 @@ export default {
   inset-inline-start: 1rem;
 }
 
-// membership pricing
-.member-pricing-bg {
-  position: relative;
-  background-color: rgba(var(--v-theme-on-surface), var(--v-hover-opacity));
+.nomatch {
+  animation: animName 0.5s linear infinite;
+  filter: blur(10px);
 }
 
-.membership-pricing {
-  sup {
-    inset-block-start: 9px;
+@keyframes animName {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
   }
 }
 </style>

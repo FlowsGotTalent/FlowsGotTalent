@@ -42,7 +42,7 @@ const play = c => {
 
   if (outcome === 'win') {
     wins.value++
-    verdict.value = 'wi'
+    verdict.value = 'win'
   } else if (outcome === 'loss') {
     losses.value++
     verdict.value = 'loss'
@@ -131,13 +131,13 @@ img.spr {
 
         <main class="container mx-auto">
           <div v-if="wins>=3" class="ma-4">
-            <h3 class="text-success">Great, you won! You're progressing to round 2!</h3>
+            <h3 class="text-success">Great, you won the round! 🏅 You're progressing to round 2!</h3>
             <VBtn color="success" class="ma-4">Play round 2: Archery</VBtn>
           </div>
-          <div v-if="losses >=3">
+          <div v-else-if="losses >=3">
             <h3 class="text-error">To bad, so sad! 😔</h3>
-            <p>You got out foxed this time, find another opponent and try again.</p>
-            <VBtn color="info" class="ma-4" to="/new">Play Again</VBtn>
+            <p>You got out foxed 🦊 this time, find another opponent and try again.</p>
+            <VBtn color="info" class="ma-4" to="/new">Find new opponent</VBtn>
           </div>
           <div v-else>
             <div v-if="choice === null" class="text-lg mb-2 text-center mx-auto">
@@ -194,12 +194,12 @@ img.spr {
               </div>
 
               <div class="text-5xl mb-5">
-                <v-chip v-if="verdict=='win'" size="large" color="success">Your Won!</v-chip>
+                <v-chip v-if="verdict=='win'" size="large" color="success">Your Won! 🎉</v-chip>
                 <v-chip v-if="verdict=='loss'" size="large" color="error">You Lost 😔</v-chip>
-                <v-chip v-if="verdict=='draw'" size="large" color="error">Draw!</v-chip>
+                <v-chip v-if="verdict=='draw'" size="large" color="info">Draw! ⚖️</v-chip>
               </div>
 
-              <VBtn color="primary" dark large
+              <VBtn v-if="wins<=3 || losses<=3" color="primary" dark large
                     @click="resetRound" class="bg-pink-500 rounded text-lg py-2 px-4 hover:bg-pink-400">Play
                 again
               </VBtn>
