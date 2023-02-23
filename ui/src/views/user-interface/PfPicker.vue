@@ -1,4 +1,9 @@
 <script>
+import * as fcl from "@onflow/fcl";
+import * as t from '@onflow/types';
+
+const api = "https://rest-mainnet.onflow.org";
+fcl.config().put("accessNode.api", api);
 export default {
   name: 'pfpicker',
   props: {
@@ -7,7 +12,8 @@ export default {
   data() {
     return {
       startLogin: false,
-      address: '',
+      address: '0x2a0eccae942667be',
+      nfts: [],
       pfp: '',
       user: {
         name: this.dName,
@@ -23,8 +29,25 @@ export default {
     if (localStorage.getItem('flowEmail') || false) {
       this.user.email = localStorage.getItem('flowEmail') || ''
     }
+    this.getNFTS()
   },
   methods: {
+    getNFTS() {
+      const cadenceQuery = `
+      import Flovatar from 0x921ea449dffec68a
+      pub fun main(address:Address) : [Flovatar.FlovatarData] {
+        return Flovatar.getFlovatars(address: address)
+      }`
+      console.log(cadenceQuery)
+      return fcl.send([
+        fcl.script`${cadenceQuery}`,
+        fcl.args([fcl.arg(this.address, t.Address)]),
+      ]).then(fcl.decode).then((nfts) => {
+        this.nfts = nfts
+        console.log(nfts)
+      })
+      console.log(this.nftList)
+    },
     save() {
       localStorage.setItem('flowName', this.user.name)
       localStorage.setItem('flowEmail', this.user.email)

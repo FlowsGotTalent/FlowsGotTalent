@@ -5,6 +5,9 @@ import authV1MaskDark from '@/assets/images/pages/auth-v1-mask-dark.png'
 import authV1MaskLight from '@/assets/images/pages/auth-v1-mask-light.png'
 import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import '@/firebase/init'
 import * as fcl from "@onflow/fcl";
 
 fcl.config({
@@ -80,7 +83,25 @@ export default {
           this.address = user.addr
           localStorage.setItem('flowAddress', user.addr)
           console.log(user)
-          window.location.href = '/play' // force page load to get localstorage
+          firebase.auth().signInAnonymously()
+            .then(() => {
+              //window.location.href = '/play' // force page load to get localstorage
+            })
+            .catch((error) => {
+              console(e)
+            })
+          firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              var uid = user.uid;
+              // ...
+            } else {
+              // User is signed out
+              // ...
+            }
+          });
+
         }
       })
     },
