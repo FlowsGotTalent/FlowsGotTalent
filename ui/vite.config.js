@@ -41,17 +41,20 @@ export default defineConfig({
         'process.env': {},
         // By default, Vite doesn't include shims for NodeJS/
         // necessary for segment analytics lib to work
-        global: 'window'
+        // global: 'window'
     },
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url)),
-            '@core': fileURLToPath(new URL('./src/@core', import.meta.url)),
-            '@layouts': fileURLToPath(new URL('./src/@layouts', import.meta.url)),
-            '@configured-variables': fileURLToPath(new URL('./src/styles/variables/_template.scss', import.meta.url)),
-            '@axios': fileURLToPath(new URL('./src/plugins/axios', import.meta.url)),
-            'apexcharts': fileURLToPath(new URL('node_modules/apexcharts-clevision', import.meta.url)),
+            '@': fileURLToPath(new URL('./src', '/')),
+            '@core': fileURLToPath(new URL('./src/@core', '/')),
+            '@layouts': fileURLToPath(new URL('./src/@layouts', '/')),
+            '@configured-variables': fileURLToPath(new URL('./src/styles/variables/_template.scss', '/')),
+            '@axios': fileURLToPath(new URL('./src/plugins/axios', '/')),
+            'apexcharts': fileURLToPath(new URL('node_modules/apexcharts-clevision', '/')),
+            process: "process/browser",
             stream: "stream-browserify",
+            zlib: "browserify-zlib",
+            util: 'util'
         },
     },
     build: {

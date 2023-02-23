@@ -1,5 +1,4 @@
 <script>
-
 import * as fcl from "@onflow/fcl";
 import * as t from '@onflow/types';
 
@@ -30,16 +29,8 @@ export default {
     if (localStorage.getItem('flowEmail') || false) {
       this.user.email = localStorage.getItem('flowEmail') || ''
     }
-    this.getNFTS()
-  },
-  methods: {
-    async getNFTS() {
-      const cadenceQuery = `
-      import Flovatar from 0x921ea449dffec68a
-      pub fun main(address:Address) : [Flovatar.FlovatarData] {
-        return Flovatar.getFlovatars(address: address)
-      }`
-      const UFCstrike = `
+
+    const UFCstrike = `
   import NonFungibleToken from 0x1d7e57aa55817448
   import UFC_NFT from 0x329feb3ab062d289
 
@@ -52,9 +43,12 @@ export default {
 
     return collectionRef.getIDs()
     }`
-      console.log(cadenceQuery)
+    this.getNFTS(UFCstrike)
+  },
+  methods: {
+    async getNFTS(cadenceQuery) {
       const idsResponse = await fcl.send([
-        fcl.script`${UFCstrike}`,
+        fcl.script`${cadenceQuery}`,
         fcl.args([fcl.arg(this.address, t.Address)]),
       ])
       this.nftList = await fcl.decode(idsResponse)
@@ -89,13 +83,11 @@ export default {
         <v-slide-group-item
           v-for="n in 25"
           :key="n"
-          v-slot="{ isSelected, toggle }"
         >
           <v-btn
             class="ma-2"
             rounded
-            :color="isSelected ? 'primary' : undefined"
-            @click="toggle"
+
           >
             Options {{ n }}
           </v-btn>

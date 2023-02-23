@@ -11,9 +11,6 @@ import db from '@/firebase/init'
 import * as fcl from "@onflow/fcl";
 
 const vuetifyTheme = useTheme()
-const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? authV1MaskLight : authV1MaskDark
-})
 </script>
 
 <script>
@@ -42,7 +39,7 @@ export default {
   mounted() {
     this.address = localStorage.getItem('flowAddress') || ''
     this.user.name = localStorage.getItem('flowName') || ''
-    firebase.auth().createUserWithEmailAndPassword('diydan82@gmail.com', '1111')
+    firebase.auth().createUserWithEmailAndPassword('11diydan82@gmail.com', '1111asdasd')
       .then(response => {
         console.log(response)
       }).catch(err => {
@@ -187,7 +184,7 @@ export default {
 </template>
 
 <style lang="scss">
-@use "@core/scss/pages/page-auth.scss";
+@use "@/@core/scss/pages/page-auth.scss";
 </style>
 
 <route lang="yaml">
