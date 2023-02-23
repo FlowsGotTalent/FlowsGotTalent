@@ -7,18 +7,8 @@ import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import '@/firebase/init'
+import db from '@/firebase/init'
 import * as fcl from "@onflow/fcl";
-
-fcl.config({
-  "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
-  "discovery.authn.endpoint": "https://fcl-discovery.onflow.org/api/testnet/authn",
-  'discovery.wallet.method': 'POP/RPC',
-  'accessNode.api': 'https://access-mainnet-beta.onflow.org',
-  'app.detail.title': 'DapZap',
-  'app.detail.icon': 'https://dapzap.com/logo.png',
-})
-
 
 const vuetifyTheme = useTheme()
 const authThemeMask = computed(() => {
@@ -52,6 +42,12 @@ export default {
   mounted() {
     this.address = localStorage.getItem('flowAddress') || ''
     this.user.name = localStorage.getItem('flowName') || ''
+    firebase.auth().createUserWithEmailAndPassword('diydan82@gmail.com', '1111')
+      .then(response => {
+        console.log(response)
+      }).catch(err => {
+      console.log(err)
+    })
   },
   methods: {
     login(wallet) {
@@ -66,14 +62,14 @@ export default {
         })
       } else {
         fcl.config({
-          "discovery.wallet": "https://fcl-discovery.onflow.org/mainnet/authn",
-          "discovery.authn.endpoint": "https://fcl-discovery.onflow.org/api/mainnet/authn",
-          'accessNode.api': 'https://access-mainnet-beta.onflow.org',
+          "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
+          "discovery.authn.endpoint": "https://fcl-discovery.onflow.org/api/testnet/authn",
+          'accessNode.api': 'https://access-testnet-beta.onflow.org',
           'app.detail.title': 'Flow\'s Got Talent',
           'app.detail.icon': 'https://flowsgottalent.com/logo.png',
         })
       }
-      console.log(fcl.config())
+
       fcl.authenticate()
       this.authenticate()
     },
@@ -83,8 +79,10 @@ export default {
           this.address = user.addr
           localStorage.setItem('flowAddress', user.addr)
           console.log(user)
+          /*
           firebase.auth().signInAnonymously()
             .then(() => {
+              console.log('signed in')
               //window.location.href = '/play' // force page load to get localstorage
             })
             .catch((error) => {
@@ -92,6 +90,7 @@ export default {
             })
           firebase.auth().onAuthStateChanged((user) => {
             if (user) {
+              console.log(user)
               // User is signed in, see docs for a list of available properties
               // https://firebase.google.com/docs/reference/js/firebase.User
               var uid = user.uid;
@@ -101,7 +100,7 @@ export default {
               // ...
             }
           });
-
+*/
         }
       })
     },

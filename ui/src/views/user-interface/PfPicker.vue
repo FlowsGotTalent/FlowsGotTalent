@@ -1,4 +1,5 @@
 <script>
+
 import * as fcl from "@onflow/fcl";
 import * as t from '@onflow/types';
 
@@ -12,8 +13,8 @@ export default {
   data() {
     return {
       startLogin: false,
-      address: '0x2a0eccae942667be',
-      nfts: [],
+      address: '0x3cbb4897e52fcc31',
+      nftList: [],
       pfp: '',
       user: {
         name: this.dName,
@@ -32,20 +33,31 @@ export default {
     this.getNFTS()
   },
   methods: {
-    getNFTS() {
+    async getNFTS() {
       const cadenceQuery = `
       import Flovatar from 0x921ea449dffec68a
       pub fun main(address:Address) : [Flovatar.FlovatarData] {
         return Flovatar.getFlovatars(address: address)
       }`
+      const UFCstrike = `
+  import NonFungibleToken from 0x1d7e57aa55817448
+  import UFC_NFT from 0x329feb3ab062d289
+
+
+  pub fun main(address: Address): [UInt64] {
+      let account = getAccount(address)
+
+      let collectionRef = account.getCapability(UFC_NFT.CollectionPublicPath).borrow<&{NonFungibleToken.CollectionPublic}>()
+          ?? panic("Could not borrow capability from public collection")
+
+    return collectionRef.getIDs()
+    }`
       console.log(cadenceQuery)
-      return fcl.send([
-        fcl.script`${cadenceQuery}`,
+      const idsResponse = await fcl.send([
+        fcl.script`${UFCstrike}`,
         fcl.args([fcl.arg(this.address, t.Address)]),
-      ]).then(fcl.decode).then((nfts) => {
-        this.nfts = nfts
-        console.log(nfts)
-      })
+      ])
+      this.nftList = await fcl.decode(idsResponse)
       console.log(this.nftList)
     },
     save() {
