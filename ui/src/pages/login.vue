@@ -26,6 +26,7 @@ export default {
     return {
       startLogin: false,
       address: '',
+      loading: false,
       user: {
         name: '',
       },
@@ -37,7 +38,7 @@ export default {
   },
   methods: {
     login(wallet) {
-
+      this.loading = true
       if (wallet === 'dapper') {
         fcl.config({
           "discovery.wallet": "https://accounts.meetdapper.com/fcl/authn-restricted",
@@ -60,25 +61,19 @@ export default {
       this.authenticate()
     },
     authenticate() {
+      this.loading = true
       fcl.authenticate().then(user => {
         if (user.addr) {
           this.address = user.addr
           localStorage.setItem('flowAddress', user.addr)
           console.log(user)
-          firebase.auth().signInAnonymously()
-            .catch((e) => {
-              console.log(e)
-            })
-          firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-              console.log(user)
-              console.log('signed in')
-              localStorage.setItem('userId', user.uid)
-              window.location.href = '/play' // force page load to get localstorage
-            } else {
-              this.logOut()
-            }
-          });
+
+          firebase.auth().signInAnonymously().then(() => {
+            this.loading = false
+            window.location.href = '/play' // force page load to get localstorage
+          }).catch((e) => {
+            console.log(e)
+          })
         }
       })
     },
@@ -121,7 +116,7 @@ export default {
       <VCardText>
         <div class="mx-auto text-center">
           <div v-if="address">
-            <v-chip v-if="user.name.length>1">{{ user.name }}</v-chip>
+            <v-chip v-if="user.name.length>1" class="text-capitalize">{{ user.name }}</v-chip>
             <br>
             <v-chip class="ma-2">Flow Address: {{ address }}</v-chip>
             <br>
@@ -130,10 +125,10 @@ export default {
           <div v-else>
             <VRow>
               <VCol>
-                <VBtn @click="login('flow')" color="success">Flow Wallet</VBtn>
+                <VBtn @click="login('flow')" color="success" :loading="loading">Flow Wallet</VBtn>
               </VCol>
               <VCol>
-                <VBtn @click="login('dapper')" color="primary">Dapper Wallet</VBtn>
+                <VBtn @click="login('dapper')" color="primary" :loading="loading">Dapper Wallet</VBtn>
               </VCol>
             </VRow>
           </div>

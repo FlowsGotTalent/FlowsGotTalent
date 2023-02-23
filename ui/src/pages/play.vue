@@ -25,12 +25,13 @@ export default {
     this.checkIsMobile()
     this.player1Address = localStorage.getItem('flowAddress') || ''
     this.display1Name = localStorage.getItem('flowName') || ''
+    this.pfp1 = localStorage.getItem('flowPfp') || ''
     if (this.player1Address) {
       this.getMatch()
     } else {
       this.$router.push('/login')
     }
-    if (!this.display1Name) {
+    if (!this.display1Name || !this.pfp1) {
       this.showNameDialog = true
     }
   },
@@ -43,7 +44,10 @@ export default {
       }
     },
     getMatch() {
-      this.match = true
+      //todo: get match from server
+      setTimeout(() => {
+        this.match = true
+      }, 3000)
       console.log('getMatch')
       if (!this.display1Name && !this.dName) {
         this.dName = uniqueNamesGenerator({
@@ -75,26 +79,6 @@ export default {
       </v-system-bar>
     </v-layout>
   </div>
-  <VRow class="match-height" v-if="!match">
-    <VCol
-      cols="12"
-    >
-      <div class="text-center mx-auto">
-        <h2>
-          <VIcon
-            start
-            icon="mdi-account-search"
-          />
-          Match Making...
-        </h2>
-        <VProgress-circular
-          class="mt-6"
-          indeterminate
-          color="primary"
-        ></VProgress-circular>
-      </div>
-    </VCol>
-  </VRow>
   <VRow class="match-height">
     <VCol cols="0" md="1" lg="1" xs="0"></VCol>
     <VCol
@@ -107,10 +91,26 @@ export default {
     <VCol cols="12" xs="12" md="6" lg="6" id="gameDiv" class="order-last">
       <div class="bg-white pa-10 ma-0">
         <div v-if="!match">
-          <h4 class="text-center ma-4">Finding a worthy adversary...</h4>
-          <p class="text-center">If no opponent is found you will be matched with computer player.</p>
-          <p class="text-center text-sm">Computer players use PFP NFTs from the pool of real players.<br>(In the future
-            this will be limited to those being lent out FGT).</p>
+          <div class="text-center mx-auto match-height" v-if="!match">
+            <h2>
+              <VIcon
+                start
+                icon="mdi-account-search"
+              />
+              Match Making...
+            </h2>
+            <VProgress-circular
+              class="mt-4"
+              indeterminate
+              color="primary"
+            ></VProgress-circular>
+          </div>
+          <h3 class="text-center ma-2 mb-6">Finding a worthy adversary...</h3>
+          <p class="text-center text-sm text-muted ma-1">If no opponent is found you will be matched with computer
+            player.</p>
+          <p class="text-center text-sm text-muted ma-1">Computer players use PFP NFTs from the pool of real players.<br>(In
+            the future
+            this will be limited to those being 'lent' out to FGT).</p>
         </div>
         <div v-else>
           <div v-if="!currentRound || currentRound==1">

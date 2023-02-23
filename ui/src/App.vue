@@ -23,12 +23,14 @@ export default {
     address: '',
     user: {
       name: '',
+      pfp: '',
     },
   }),
   mounted() {
     this.checkIsMobile()
     this.address = localStorage.getItem('flowAddress')
     this.user.name = localStorage.getItem('flowName')
+    this.user.pfp = localStorage.getItem('flowPfp') || avatar1
   },
   methods: {
     checkIsMobile() {
@@ -47,6 +49,20 @@ export default {
   },
 }
 </script>
+<style>
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.75rem;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+</style>
 
 <template>
   <VApp>
@@ -81,7 +97,7 @@ export default {
               color="primary"
               variant="tonal"
             >
-              <VImg :src="avatar1"/>
+              <VImg :src="user.pfp"/>
 
               <!-- SECTION Menu -->
               <VMenu
@@ -101,7 +117,7 @@ export default {
                             size="40"
                             variant="tonal"
                           >
-                            <VImg :src="avatar1"/>
+                            <VImg :src="user.pfp"/>
                           </VAvatar>
                         </VBadge>
                       </VListItemAction>
@@ -177,7 +193,7 @@ export default {
           <v-list-item prepend-icon="mdi-crown" title="Leaderboards"
                        to="/leaderboards"></v-list-item>
           <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Compatible Projects"
-                       to="/projects"></v-list-item>
+                       to="/projects  "></v-list-item>
         </v-list>
       </v-navigation-drawer>
 

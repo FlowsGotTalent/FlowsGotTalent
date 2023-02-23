@@ -19,17 +19,29 @@ export default {
   data() {
     return {
       cardBg1: 'https://source.unsplash.com/300x200/?abstract green',
+      avatarBg1: 'https://source.unsplash.com/300x200/?abstract green',
       cardBg2: '',
       rating: false,
+      user: {
+        name: '',
+        pfp: `https://flovatar.com/api/image/${Math.floor(1000 + Math.random() * 3000)}`,
+      },
     }
   },
   mounted() {
-    if (!this.you) {
+    if (this.you) {
+      if (localStorage.getItem('flowPfp') || false) {
+        this.user.pfp = localStorage.getItem('flowPfp')
+      }
+    } else {
       this.cardBg2 = 'https://source.unsplash.com/300x200/?abstract blue'
     }
-
   },
-  methods: {}
+  methods: {
+    changePFP() {
+      this.$parent.$parent.$parent.showNameDialog = true
+    },
+  }
 }
 </script>
 <template>
@@ -46,11 +58,13 @@ export default {
       <VImg v-else :src="cardBg2"/>
       <div class="pfp mx-4 mb-1 pb-1 mx-auto text-center">
         <VAvatar
+          @click="changePFP()"
           size="100%"
-          class="avatar-center mx-auto text-center mt-5 elevation-8"
-          :image="avatar1"
+          class="avatar-center mx-auto text-center mt-5 elevation-8 bg-white bg-1"
+          :class="{'p1': you, 'p2': !you}"
+          :image="user.pfp"
           variant="elevated"
-          style="max-width: 130px"
+          style="max-width: 130px; cursor: pointer;"
         />
       </div>
 
@@ -98,6 +112,23 @@ export default {
 .pfp {
   position: relative;
   margin-top: -120px !important;
+}
+
+.pfp .avatar-center.p2 {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.bg-white.bg-1.p2 {
+  background-color: #e8f6ff !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3da10f", endColorstr="#18fc09", GradientType=1);
+  box-shadow: 0px 0px 2px #47525d !important;
+}
+
+.bg-white.bg-1 {
+  background-color: #edf8e7 !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3da10f", endColorstr="#18fc09", GradientType=1);
+  box-shadow: 0px 0px 2px #47525d !important;
 }
 </style>
 
