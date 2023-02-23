@@ -5,15 +5,6 @@ import authV1MaskDark from '@/assets/images/pages/auth-v1-mask-dark.png'
 import authV1MaskLight from '@/assets/images/pages/auth-v1-mask-light.png'
 import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
-
-const vuetifyTheme = useTheme()
-const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? authV1MaskLight : authV1MaskDark
-})
-</script>
-
-<script>
-
 import * as fcl from "@onflow/fcl";
 
 fcl.config({
@@ -25,6 +16,14 @@ fcl.config({
   'app.detail.icon': 'https://dapzap.com/logo.png',
 })
 
+
+const vuetifyTheme = useTheme()
+const authThemeMask = computed(() => {
+  return vuetifyTheme.global.name.value === 'light' ? authV1MaskLight : authV1MaskDark
+})
+</script>
+
+<script>
 export default {
   name: 'LoginView',
   props: {
@@ -41,62 +40,108 @@ export default {
   data() {
     return {
       startLogin: false,
-      address: ''
+      address: '',
+      user: {
+        name: '',
+      },
     }
   },
-  created() {
+  mounted() {
+    this.address = localStorage.getItem('flowAddress') || ''
+    this.user.name = localStorage.getItem('flowName') || ''
   },
   methods: {
-    loginFlow() {
-      fcl.config({
-        "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
-      })
+    login(wallet) {
+
+      if (wallet === 'dapper') {
+        fcl.config({
+          "discovery.wallet": "https://accounts.meetdapper.com/fcl/authn-restricted",
+          'discovery.wallet.method': 'POP/RPC',
+          'accessNode.api': 'https://access-mainnet-beta.onflow.org',
+          'app.detail.title': 'Flow\'s Got Talent',
+          'app.detail.icon': 'https://flowsgottalent.com/logo.png',
+        })
+      } else {
+        fcl.config({
+          "discovery.wallet": "https://fcl-discovery.onflow.org/mainnet/authn",
+          "discovery.authn.endpoint": "https://fcl-discovery.onflow.org/api/mainnet/authn",
+          'accessNode.api': 'https://access-mainnet-beta.onflow.org',
+          'app.detail.title': 'Flow\'s Got Talent',
+          'app.detail.icon': 'https://flowsgottalent.com/logo.png',
+        })
+      }
+      console.log(fcl.config())
       fcl.authenticate()
-      this.authenticate()
-    },
-    loginDapper() {
-      fcl.config({
-        "discovery.wallet": "https://accounts.meetdapper.com/fcl/authn-restricted",
-      })
       this.authenticate()
     },
     authenticate() {
       fcl.authenticate().then(user => {
-        this.address = user.addr
-        console.log(user)
+        if (user.addr) {
+          this.address = user.addr
+          localStorage.setItem('flowAddress', user.addr)
+          console.log(user)
+          window.location.href = '/play' // force page load to get localstorage
+        }
       })
     },
     logOut() {
       fcl.unauthenticate()
       this.address = ''
+      localStorage.setItem('flowAddress', '')
+      localStorage.setItem('flow', '')
+      this.$router.go('/')
+
     }
   },
 }
 </script>
 
 <template>
-  <div class="auth-wrapper d-flex align-center justify-center pa-3">
+  <div class="d-flex align-center justify-center">
     <VCard
-      class="auth-card pa-4 pt-2 mb-0 pb-0"
+      class="auth-card pa-4 mb-0 pb-0"
       max-width="448"
     >
-      <VCardItem class="justify-center">
-        <template #prepend>
-        </template>
-      </VCardItem>
-
       <VImg :src="logo" class="d-block mx-auto mt-0 pt-0" style="max-width: 250px"></VImg>
       <VCardText class="pt-2">
-        <h6 class="text-h6 font-weight-semibold mb-1 text-center">
-          👋🏻 Connect your flow wallet to get started!
-        </h6>
-        <p class="mb-0">
-        </p>
+        <div v-if="!address">
+          <h6 class="text-h6 font-weight-semibold mb-1 text-center">
+            👋🏻 Connect your wallet to get started!
+          </h6>
+        </div>
+        <div v-else class="mx-auto text-center mt-4">
+          <h3>✅ Connected to Flow.</h3>
+        </div>
       </VCardText>
 
       <VCardText>
         <div class="mx-auto text-center">
-          <VBtn>Connect</VBtn>
+          <div v-if="address">
+            <v-chip v-if="user.name.length>1">{{ user.name }}</v-chip>
+            <br>
+            <v-chip class="ma-2">Flow Address: {{ address }}</v-chip>
+            <br>
+            <VBtn class="ma-4" @click="logOut">Logout</VBtn>
+          </div>
+          <div v-else>
+            <VRow>
+              <VCol>
+                <VBtn @click="login('flow')" color="success">Flow Wallet</VBtn>
+              </VCol>
+              <VCol>
+                <VBtn @click="login('dapper')" color="primary">Dapper Wallet</VBtn>
+              </VCol>
+            </VRow>
+          </div>
+        </div>
+        <div v-if="!address">
+          <p class="ma-4 text-center mx-auto text-sm">
+            Don't own a Flow/Dapper NFT yet?<br>
+            <VBtn size="small" color="default" variant="tonal" outlined class="mt-2"
+                  href="https://www.flowverse.co/categories/marketplaces"
+                  target="_new"> Flow Marketplaces
+            </VBtn>
+          </p>
         </div>
       </VCardText>
     </VCard>

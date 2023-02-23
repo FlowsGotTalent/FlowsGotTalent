@@ -1,6 +1,7 @@
 <script setup>
 import playerProfile from '@/views/games/PlayerProfile.vue'
 import spr from '@/views/games/ScissorsPaperRock.vue'
+import pfpPicker from '@/views/user-interface/PfPicker.vue'
 import {uniqueNamesGenerator, adjectives, animals} from 'unique-names-generator';
 </script>
 <script>
@@ -8,23 +9,35 @@ export default {
   data() {
     return {
       match: false,
-      display1Name: this.name,
+      pfp1: '',
+      dName: '',
+      display1Name: '',
       display2Name: '',
       player1Address: 'test1',
       player2Address: 'test2',
       admin: true,
       currentRound: 1,
+      showNameDialog: false,
     }
   },
   mounted() {
-    this.getMatch()
+    this.player1Address = localStorage.getItem('flowAddress') || ''
+    this.display1Name = localStorage.getItem('flowName') || ''
+    if (this.player1Address) {
+      this.getMatch()
+    } else {
+      this.$router.push('/login')
+    }
+    if (!this.display1Name) {
+      this.showNameDialog = true
+    }
   },
   methods: {
     getMatch() {
       this.match = true
       console.log('getMatch')
-      if (!this.display1Name) {
-        this.display1Name = uniqueNamesGenerator({
+      if (!this.display1Name && !this.dName) {
+        this.dName = uniqueNamesGenerator({
           dictionaries: [adjectives, animals]
         }).replace('_', ' ')
       }
@@ -72,7 +85,8 @@ export default {
       <div v-if="!match">
         <h4 class="text-center ma-4">Finding a worthy adversary...</h4>
         <p class="text-center">If no opponent is found you will be matched with computer player.</p>
-        <p class="text-center text-sm">Computer players use PFP NFTs from the pool of real players.<br>(In the future this will be limited to those being lent out FGT).</p>
+        <p class="text-center text-sm">Computer players use PFP NFTs from the pool of real players.<br>(In the future
+          this will be limited to those being lent out FGT).</p>
       </div>
       <div v-else>
         <div v-if="!currentRound || currentRound==1">
@@ -90,6 +104,18 @@ export default {
                      :displayAddress="player2Address"/>
     </VCol>
   </VRow>
+
+  <VDialog
+    v-model="showNameDialog"
+    width="800px"
+    max-width="80%"
+  >
+    <VCard>
+      <VCard-text>
+        <pfpPicker :dName="dName"/>
+      </VCard-text>
+    </VCard>
+  </VDialog>
 
   <div>
     <v-layout class="pa-5 ma-10">

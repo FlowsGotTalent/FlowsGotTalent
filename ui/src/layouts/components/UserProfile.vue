@@ -11,6 +11,24 @@ const avatarBadgeProps = {
 }
 </script>
 
+<script>
+export default {
+  name: 'mainView',
+  data() {
+    return {
+      address: '',
+      user: {
+        name: '',
+      },
+    }
+  },
+  mounted() {
+    this.address = localStorage.getItem('flowAddress')
+    this.user.name = localStorage.getItem('flowName')
+  },
+}
+</script>
+
 <template>
   <VBadge v-bind="avatarBadgeProps">
     <VAvatar
@@ -18,7 +36,7 @@ const avatarBadgeProps = {
       color="primary"
       variant="tonal"
     >
-      <VImg :src="avatar1" />
+      <VImg :src="avatar1"/>
 
       <!-- SECTION Menu -->
       <VMenu
@@ -38,21 +56,21 @@ const avatarBadgeProps = {
                     size="40"
                     variant="tonal"
                   >
-                    <VImg :src="avatar1" />
+                    <VImg :src="avatar1"/>
                   </VAvatar>
                 </VBadge>
               </VListItemAction>
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              John Doe
+              {{ this.user.name || '' }}
             </VListItemTitle>
             <VListItemSubtitle class="text-disabled">
-              Admin
+              {{ address }}
             </VListItemSubtitle>
           </VListItem>
 
-          <VDivider class="my-2" />
+          <VDivider class="my-2"/>
 
           <!-- 👉 Settings -->
           <VListItem link to="/account-settings">
@@ -82,7 +100,7 @@ const avatarBadgeProps = {
           </VListItem>
 
           <!-- Divider -->
-          <VDivider class="my-2" />
+          <VDivider class="my-2"/>
 
           <!-- 👉 Logout -->
           <VListItem to="/login">

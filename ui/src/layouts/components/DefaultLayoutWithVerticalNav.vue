@@ -7,13 +7,33 @@ import Footer from '@/layouts/components/Footer.vue'
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
 </script>
+<script>
+export default {
+  name: 'mainView',
+  data() {
+    return {
+      startLogin: false,
+      address: '',
+      user: {
+        name: '',
+      },
+    }
+  },
+  mounted() {
+    this.address = localStorage.getItem('flowAddress')
+    this.user.name = localStorage.getItem('flowName')
+  },
+  methods: {}
+}
+</script>
+
 
 <template>
   <VerticalNavLayout>
     <!-- 👉 navbar -->
     <template #navbar>
       <VSpacer/>
-      <VBtn to="/play" color="primary" variant="tonal" outlined>
+      <VBtn v-if="!address" to="/play" color="primary" variant="tonal" outlined>
         <VIcon
           start
           icon="mdi-star-shooting-outline"
@@ -21,19 +41,9 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
         Start Playing
       </VBtn>
       <NavbarThemeSwitcher/>
-      <VBtn
-        icon
-        variant="text"
-        color="default"
-        class="me-2"
-        size="small"
-      >
-        <VIcon
-          icon="mdi-bell-outline"
-          size="24"
-        />
-      </VBtn>
-      <UserProfile/>
+      <div v-if="address">
+        <UserProfile/>
+      </div>
     </template>
 
     <!-- 👉 Drawer content -->

@@ -13,6 +13,23 @@ const upgradeBanner = computed(() => {
   return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
 })
 </script>
+<script>
+export default {
+  name: 'mainView',
+  data() {
+    return {
+      address: '',
+      user: {
+        name: '',
+      },
+    }
+  },
+  mounted() {
+    this.address = localStorage.getItem('flowAddress') || ''
+    this.user.name = localStorage.getItem('flowName') || ''
+  }
+}
+</script>
 
 <template>
   <!-- 👉 Nav header -->
@@ -68,8 +85,8 @@ const upgradeBanner = computed(() => {
 
   <!-- 👉 illustration -->
   <a
+    v-if="!address"
     href="/play"
-    target="_blank"
     rel="noopener noreferrer"
   >
     <img
