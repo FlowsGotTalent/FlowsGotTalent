@@ -176,12 +176,3 @@ export default {
     />
   </div>
 </template>
-
-<style lang="scss">
-@use "@/@core/scss/pages/page-auth.scss";
-</style>
-
-<route lang="yaml">
-meta:
-layout: blank
-</route>

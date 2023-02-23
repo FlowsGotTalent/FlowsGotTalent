@@ -1,5 +1,4 @@
 <script setup>
-import AnalyticsDepositWithdraw from '@/views/dashboards/analytics/AnalyticsDepositWithdraw.vue'
 import AnalyticsSalesByCountries from '@/views/dashboards/analytics/AnalyticsSalesByCountries.vue'
 import AnalyticsTransactions from '@/views/dashboards/analytics/AnalyticsTransactions.vue'
 </script>
