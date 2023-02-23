@@ -11,7 +11,7 @@ const avatars = [
   avatar3,
   avatar4,
 ]
-const isCardDetailsVisible = ref(false)
+
 </script>
 <script>
 export default {

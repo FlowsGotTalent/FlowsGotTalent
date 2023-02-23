@@ -174,12 +174,6 @@ export default {
       class="auth-footer-end-tree d-none d-md-block"
       :width="350"
     />
-
-    <!-- bg img -->
-    <VImg
-      class="auth-footer-mask d-none d-md-block"
-      :src="authThemeMask"
-    />
   </div>
 </template>
 

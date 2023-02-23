@@ -2,7 +2,7 @@
 import '@/@iconify/icons-bundle'
 import App from '@/App.vue'
 import {loadFonts} from '@/plugins/webfontloader'
-import router from '@/router/index2'
+import router from '@/router/index'
 import '@/styles/styles.scss'
 //import '@/@core/scss/index.scss'
 import {createPinia} from 'pinia'
