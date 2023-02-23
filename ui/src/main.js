@@ -5,6 +5,7 @@ import '@/styles/styles.scss'
 import {createPinia} from 'pinia'
 import {createApp} from 'vue'
 import vuetify from "@/plugins/vuetify/index";
+import db from '@/firebase/init'
 
 loadFonts()
 const app = createApp(App)

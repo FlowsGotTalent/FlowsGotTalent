@@ -1,19 +1,14 @@
 <script setup>
-import {useTheme} from 'vuetify'
 import logo from '@/assets/logo.png'
-import authV1MaskDark from '@/assets/images/pages/auth-v1-mask-dark.png'
-import authV1MaskLight from '@/assets/images/pages/auth-v1-mask-light.png'
 import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import db from '@/firebase/init'
-import * as fcl from "@onflow/fcl";
-
-const vuetifyTheme = useTheme()
 </script>
 
 <script>
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import * as fcl from "@onflow/fcl";
+
 export default {
   name: 'LoginView',
   props: {
@@ -39,12 +34,6 @@ export default {
   mounted() {
     this.address = localStorage.getItem('flowAddress') || ''
     this.user.name = localStorage.getItem('flowName') || ''
-    firebase.auth().createUserWithEmailAndPassword('11diydan82@gmail.com', '1111asdasd')
-      .then(response => {
-        console.log(response)
-      }).catch(err => {
-      console.log(err)
-    })
   },
   methods: {
     login(wallet) {
@@ -76,28 +65,20 @@ export default {
           this.address = user.addr
           localStorage.setItem('flowAddress', user.addr)
           console.log(user)
-          /*
           firebase.auth().signInAnonymously()
-            .then(() => {
-              console.log('signed in')
-              //window.location.href = '/play' // force page load to get localstorage
-            })
-            .catch((error) => {
-              console(e)
+            .catch((e) => {
+              console.log(e)
             })
           firebase.auth().onAuthStateChanged((user) => {
             if (user) {
               console.log(user)
-              // User is signed in, see docs for a list of available properties
-              // https://firebase.google.com/docs/reference/js/firebase.User
-              var uid = user.uid;
-              // ...
+              console.log('signed in')
+              localStorage.setItem('userId', user.uid)
+              window.location.href = '/play' // force page load to get localstorage
             } else {
-              // User is signed out
-              // ...
+              this.logOut()
             }
           });
-*/
         }
       })
     },
@@ -114,7 +95,13 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex align-center justify-center">
+  <div class="d-flex align-center justify-center mx-auto mt-10">
+
+    <VImg
+      class="auth-footer-start-tree d-none d-md-block"
+      :src="authV1Tree"
+      :width="250"
+    />
     <VCard
       class="auth-card pa-4 mb-0 pb-0"
       max-width="448"
@@ -162,12 +149,6 @@ export default {
         </div>
       </VCardText>
     </VCard>
-
-    <VImg
-      class="auth-footer-start-tree d-none d-md-block"
-      :src="authV1Tree"
-      :width="250"
-    />
 
     <VImg
       :src="authV1Tree2"

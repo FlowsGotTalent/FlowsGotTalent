@@ -127,7 +127,7 @@ img.spr {
       md="12"
       class="text-center mx-auto"
     >
-      <div class="bg-white text-gray-600 text-center mx-auto">
+      <div class="text-gray-600 text-center mx-auto">
 
         <main class="container mx-auto">
           <div v-if="wins>=3" class="ma-4">
@@ -142,7 +142,6 @@ img.spr {
           <div v-else>
             <div v-if="choice === null" class="text-lg mb-2 text-center mx-auto">
               <p clsss="ma-0 pa-0">Make your choice, first to win 3 times proceeds to round 2:</p>
-              <img src="@/assets/images/games/spr/3-arrows-down.png" alt="arrow-choice" class="spr ma-0 pa-0"/>
             </div>
 
             <div v-if="choice === null" class="flex items-center justify-center">

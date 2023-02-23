@@ -1,4 +1,6 @@
 <script>
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import * as fcl from "@onflow/fcl";
 import * as t from '@onflow/types';
 
@@ -54,11 +56,23 @@ export default {
       this.nftList = await fcl.decode(idsResponse)
       console.log(this.nftList)
     },
-    save() {
+    linkAccount(credential) {
+      firebase.auth().currentUser.linkWithCredential(credential)
+        .then((usercred) => {
+          var user = usercred.user;
+          console.log("Account linking success", user);
+        }).catch((error) => {
+        console.log("Account linking error", error);
+      });
+    },
+    async save() {
       localStorage.setItem('flowName', this.user.name)
       localStorage.setItem('flowEmail', this.user.email)
       localStorage.setItem('flowPFP', this.pfp)
-      window.location.href = '/play' // force page load to get localstorage
+      const credential = await firebase.auth.EmailAuthProvider.credential(this.user.email, this.address);
+      this.linkAccount(credential)
+
+      // window.location.href = '/play' // force page load to get localstorage
     }
   }
 }

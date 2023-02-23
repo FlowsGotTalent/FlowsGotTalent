@@ -44,11 +44,13 @@ export default {
     <VCard class="mt-3">
       <VImg v-if="you" :src="cardBg1"/>
       <VImg v-else :src="cardBg2"/>
-      <div class="pfp mx-4 mb-0 pb-0">
+      <div class="pfp mx-4 mb-1 pb-1 mx-auto text-center">
         <VAvatar
           size="100%"
-          class="avatar-center mx-auto text-center "
+          class="avatar-center mx-auto text-center mt-5 elevation-8"
           :image="avatar1"
+          variant="elevated"
+          style="max-width: 130px"
         />
       </div>
 
@@ -67,14 +69,13 @@ export default {
             class="me-3"
             density="compact"
           />
-          <span>5 Star | 98 reviews</span>
         </div>
 
-        <!--  Mutual Friends -->
-        <div class="mt-0 mx-auto d-block text-center">
+        <div class="mt-0 mx-auto text-center d-xs-none d-sm-none d-md-block">
           <p class="font-weight-medium text-center">Other PFP/Collections</p>
-          <div class="v-avatar-group mx-auto text-center">
+          <div class="v-avatar-group mx-auto text-center mt-1">
             <VAvatar
+              class="ma-1"
               v-for="avatar in avatars"
               :key="avatar"
               :image="avatar"

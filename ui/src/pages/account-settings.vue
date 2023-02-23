@@ -1,5 +1,4 @@
 <script setup>
-import {useRoute} from 'vue-router'
 import pfpPicker from '@/views/user-interface/PfPicker.vue'
 </script>
 <script>

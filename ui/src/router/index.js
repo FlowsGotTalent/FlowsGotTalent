@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import index from '@/pages/index.vue'
 import login from '@/pages/login.vue'
 import play from '@/pages/play.vue'
-import account from '@/pages/account-settings.vue'
+import settings from '@/pages/account-settings.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,9 +18,9 @@ const router = createRouter({
             component: login
         },
         {
-            path: '/account',
-            name: 'account',
-            component: account,
+            path: '/settings',
+            name: 'settings',
+            component: settings,
         },
         {
             path: '/play',
