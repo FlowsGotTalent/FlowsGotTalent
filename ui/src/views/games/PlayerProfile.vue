@@ -1,15 +1,8 @@
 <script setup>
 import avatar1 from '@/assets/images/avatars/avatar-1.png'
-import avatar2 from '@/assets/images/avatars/avatar-2.png'
-import avatar3 from '@/assets/images/avatars/avatar-3.png'
-import avatar4 from '@/assets/images/avatars/avatar-4.png'
-
 
 const avatars = [
   avatar1,
-  avatar2,
-  avatar3,
-  avatar4,
 ]
 
 </script>
@@ -38,27 +31,23 @@ export default {
     }
   },
   methods: {
-    changePFP() {
-      this.$parent.$parent.$parent.showNameDialog = true
-    },
   }
 }
 </script>
 <template>
   <div>
     <h2 class="text-center mx-auto" v-if="you">
-      <v-chip size="large" color="success" variant="tonal" class="font-weight-semibold">Player 1 (You)
+      <v-chip size="large" variant="tonal" class="font-weight-semibold">Player 1 (You)
       </v-chip>
     </h2>
     <h2 class="text-center mx-auto" v-else>
-      <v-chip size="large" color="info" variant="tonal" class="font-weight-semibold">Player 2</v-chip>
+      <v-chip size="large" variant="tonal" class="font-weight-semibold">Player 2</v-chip>
     </h2>
     <VCard class="mt-3">
       <VImg v-if="you" :src="cardBg1"/>
       <VImg v-else :src="cardBg2"/>
       <div class="pfp mx-4 mb-1 pb-1 mx-auto text-center">
         <VAvatar
-          @click="changePFP()"
           size="100%"
           class="avatar-center mx-auto text-center mt-5 elevation-8 bg-white bg-1"
           :class="{'p1': you, 'p2': !you}"
@@ -85,7 +74,7 @@ export default {
           />
         </div>
 
-        <div class="mt-0 mx-auto text-center d-xs-none d-sm-none d-md-block">
+        <div class="mt-0 mx-auto text-center d-none">
           <p class="font-weight-medium text-center">Other PFP/Collections</p>
           <div class="v-avatar-group mx-auto text-center mt-1">
             <VAvatar

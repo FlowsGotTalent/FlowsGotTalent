@@ -113,18 +113,9 @@ export default {
 }
 </script>
 <template>
-  <div id="pfppicker">
-
-
-    <v-chip>Flow Address: {{ address }}</v-chip>
-    <VTextField
-      class="mx-auto text-center d-block ma-2 mt-4"
-      style="max-width:200px;"
-      v-model="user.name"
-      label="Display Name"></VTextField>
-
+  <div id="pfppicker" class="text-center mx-auto">
     <div v-if="user.pfp">
-      <p class="text-center ma-4"> Your PFP / Character</p>
+      <h2 class="text-center ma-4"> Your PFP / Character</h2>
       <VAvatar
         size="100%"
         class="avatar-center mx-auto text-center ma-4 mt-0 pt-0 elevation-8"
@@ -135,7 +126,8 @@ export default {
       <br>
       <v-btn color="info" @click="changePFP" class="mb-4">Change</v-btn>
     </div>
-    <p v-else class="text-center ma-4"> Choose PFP / Character</p>
+    <h2 v-else class="text-center ma-4"> Choose PFP / Character</h2>
+    <v-chip>Flow Address: {{ address }}</v-chip>
     <v-sheet
       v-if="viewNFTS"
       class="mx-auto ma-5"
@@ -151,7 +143,7 @@ export default {
           <div class="mx-auto">
             <VAvatar
               @click="savePFP(`https://flovatar.com/api/image/${item.id}`)"
-              size="60"
+              size="70"
               class="avatar-center mx-auto text-center ma-0 elevation-8"
               :image="`https://flovatar.com/api/image/${item.id}`"
               variant="elevated"
@@ -166,12 +158,19 @@ export default {
       </v-slide-group>
     </v-sheet>
 
+    <VTextField
+      class="mx-auto text-center d-block ma-2 mt-4"
+      style="max-width:200px;"
+      v-model="user.name"
+      label="Display Name"></VTextField>
+
+
     <v-text-field
       class="mx-auto text-center d-block ma-2"
       style="max-width:200px;"
       v-model="user.email"
       label="Email"></v-text-field>
-    <p class="text-xs ml-5 text-center text-muted">We need this to contact you if you win any prizes</p>
+    <p class="text-xs ml-5 text-center text-muted">Add you email so we can contact you for prizes/</p>
     <div class="text-center mx-auto mt-6">
       <VBtn @click="save" :loading="loading" size="large">Save</VBtn>
     </div>

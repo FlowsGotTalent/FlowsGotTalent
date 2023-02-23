@@ -3,6 +3,8 @@ import playerProfile from '@/views/games/PlayerProfile.vue'
 import spr from '@/views/games/ScissorsPaperRock.vue'
 import pfpPicker from '@/views/user-interface/PfPicker.vue'
 import {uniqueNamesGenerator, adjectives, animals} from 'unique-names-generator';
+import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
+import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
 </script>
 <script>
 export default {
@@ -15,7 +17,7 @@ export default {
       display2Name: '',
       player1Address: 'test1',
       player2Address: 'test2',
-      admin: true,
+      admin: false,
       currentRound: 1,
       showNameDialog: false,
       isMobile: true,
@@ -86,10 +88,10 @@ export default {
       md="2"
       xs="6"
     >
-      <playerProfile class="player1main" :you="true" :displayName="display1Name" :displayAddress="player1Address"/>
+      <playerProfile  @click="showNameDialog=!showNameDialog" class="player1main" :you="true" :displayName="display1Name" :displayAddress="player1Address"/>
     </VCol>
     <VCol cols="12" xs="12" md="6" lg="6" id="gameDiv" class="order-last">
-      <div class="bg-white pa-10 ma-0">
+      <VCard class="bg-white pa-4 ma-0">
         <div v-if="!match">
           <div class="text-center mx-auto match-height" v-if="!match">
             <h2>
@@ -108,16 +110,20 @@ export default {
           <h3 class="text-center ma-2 mb-6">Finding a worthy adversary...</h3>
           <p class="text-center text-sm text-muted ma-1">If no opponent is found you will be matched with computer
             player.</p>
-          <p class="text-center text-sm text-muted ma-1">Computer players use PFP NFTs from the pool of real players.<br>(In
+          <p class="text-center text-sm text-muted ma-1">Computer players use PFP NFTs from the pool of real
+            players.<br>(In
             the future
             this will be limited to those being 'lent' out to FGT).</p>
         </div>
         <div v-else>
           <div v-if="!currentRound || currentRound==1">
+            <div class="text-center">
+              <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
+            </div>
             <spr :display2Name="display2Name" :admin="admin"/>
           </div>
         </div>
-      </div>
+      </VCard>
     </VCol>
 
     <VCol
@@ -128,6 +134,35 @@ export default {
     >
       <playerProfile class="player2main" :class="{nomatch:!match}" :you="false" :displayName="display2Name"
                      :displayAddress="player2Address"/>
+    </VCol>
+  </VRow>
+  <VRow class="match-height plants" v-if="match">
+    <VCol cols="0" md="1" lg="1" xs="0"></VCol>
+    <VCol
+      cols="6"
+      md="2"
+      xs="6"
+    >
+      <VImg
+        class="auth-footer-start-tree d-none d-md-block mt-10"
+        :src="authV1Tree"
+        :width="250"
+      />
+    </VCol>
+    <VCol cols="12" xs="12" md="6" lg="6" id="gameDiv" class="order-last">
+    </VCol>
+
+    <VCol
+      cols="6"
+      md="2"
+      xs="6"
+      class="order-md-last"
+    >
+      <VImg
+        class="auth-footer-start-tree d-none d-md-block mt-10"
+        :src="authV1Tree2"
+        :width="250"
+      />
     </VCol>
   </VRow>
 

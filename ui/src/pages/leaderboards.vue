@@ -6,7 +6,7 @@ import AnalyticsDepositWithdraw from '@/views/dashboards/analytics/AnalyticsDepo
 import AnalyticsSalesByCountries from '@/views/dashboards/analytics/AnalyticsSalesByCountries.vue'
 import AnalyticsTotalEarning from '@/views/dashboards/analytics/AnalyticsTotalEarning.vue'
 import AnalyticsTotalProfitLineCharts from '@/views/dashboards/analytics/AnalyticsTotalProfitLineCharts.vue'
-import AnalyticsTransactions from '@/views/dashboards/analytics/AnalyticsTransactions.vue'
+import AnalyticsTransactions from '@/views/dashboards/CompatibleProjects.vue'
 import AnalyticsWeeklyOverview from '@/views/dashboards/analytics/AnalyticsWeeklyOverview.vue'
 import CardStatisticsVertical from '@core/components/CardStatisticsVertical.vue'
 

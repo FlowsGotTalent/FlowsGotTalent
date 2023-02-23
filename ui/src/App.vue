@@ -1,5 +1,6 @@
 <script setup>
 import avatar1 from '@/assets/images/avatars/avatar-1.png'
+import upgradeBanner from '@/assets/images/pro/upgrade-banner-dark.png'
 
 const avatarBadgeProps = {
   dot: true,
@@ -11,9 +12,6 @@ const avatarBadgeProps = {
 }
 </script>
 <script>
-// Components
-import Footer from '@/layouts/components/Footer.vue'
-
 export default {
   data: () => ({
     drawer: false,
@@ -50,6 +48,24 @@ export default {
 }
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, p, a, li, span, div, input, textarea, button {
+  font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6, p, input, textarea {
+  font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #595656;
+}
+
+.v-main {
+  background: rgb(230, 220, 237);
+  background: -moz-radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
+  background: -webkit-radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
+  background: radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e6dced", endColorstr="#e5d1f4", GradientType=1);
+}
+
 .text-xs {
   font-size: 0.75rem;
 }
@@ -62,6 +78,29 @@ export default {
   color: #6c757d;
 }
 
+footer.v-footer.v-theme--light.rounded-md {
+  background: transparent;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.v-navigation-drawer__content {
+  color: #9155fd !important;
+}
+
+.v-list-item-title {
+  font-size: 18px !important;
+}
+
+.v-list-item__prepend > .v-icon {
+  -webkit-margin-end: 10px;
+  margin-inline-end: 10px;
+}
+
+.v-list-item--nav .v-list-item-title {
+  line-height: 20px !important;
+}
 </style>
 
 <template>
@@ -79,7 +118,6 @@ export default {
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
 
 
         <VSpacer/>
@@ -90,7 +128,7 @@ export default {
           />
           Start Playing
         </VBtn>
-        <div v-if="address" class="mr-4">
+        <div v-if="address" class="mr-5">
           <VBadge v-bind="avatarBadgeProps">
             <VAvatar
               style="cursor: pointer;"
@@ -195,6 +233,21 @@ export default {
           <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Compatible Projects"
                        to="/projects  "></v-list-item>
         </v-list>
+
+        <a
+          class="mx-auto d-block ml-3 mt-6"
+          v-if="!address"
+          href="/play"
+          rel="noopener noreferrer"
+        >
+          <img
+            :src="upgradeBanner"
+            alt="upgrade-banner"
+            transition="scale-transition"
+            class="upgrade-banner mx-auto"
+            style="max-width: 230px"
+          >
+        </a>
       </v-navigation-drawer>
 
       <v-main>
@@ -206,6 +259,12 @@ export default {
           </v-row>
         </v-container>
       </v-main>
+      <v-footer absolute>
+        <p class="align-right align-end text-right">
+          &copy;
+          {{ new Date().getFullYear() }} Flow's Got Talent
+        </p>
+      </v-footer>
     </v-layout>
   </VApp>
 </template>
