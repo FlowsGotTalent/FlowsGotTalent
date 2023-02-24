@@ -83,11 +83,16 @@ export default {
       if (e.data.name === "gameEvent" || e.message === "gameEvent") {
         console.log('Game Finished');
         if (e.data.nextRound) {
+          $this.timerCount = 60
           $this.setNextRound(e.data.nextRound)
         } else {
           if (e.data?.resetTime) {
             console.log('reset time');
-            $this.timerCount = 60
+            if (e.data?.addTime) {
+              $this.timerCount = $this.timerCount + e.data?.addTime
+            } else {
+              $this.timerCount = 60
+            }
           }
         }
       }
@@ -110,11 +115,10 @@ export default {
       this.timerCount = 60
     },
     setNextRound(round) {
-      this.timerCount = 60
+      this.timerCount = this.timerCount + 60
       localStorage.setItem('fgtCurrentRound', round)
       this.currentRound = round
       console.log(this.currentRound);
-      this.$forceUpdate()
       this.showNext = true
     },
     getMatch() {
@@ -139,11 +143,13 @@ export default {
     currentRound: {
       handler(value) {
         console.log(value)
+        this.timeLeft = this.timeLeft + 60
 
       }
       ,
       immediate: true // This ensures the watcher is triggered upon creation
     },
+
 
     timerCount: {
       handler(value) {
@@ -256,6 +262,9 @@ export default {
           </div>
           <div v-if="currentRound==9">
             <flowracer :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+          <div v-if="currentRound==10">
+            Finished!!
           </div>
         </div>
         <div v-if="match" class="mx-auto ma-1 text-center d-block">

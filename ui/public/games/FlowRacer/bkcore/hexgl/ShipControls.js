@@ -601,6 +601,7 @@ bkcore.hexgl.ShipControls.prototype.boosterCheck = function(dt)
 	if(color.r == 255 && color.g < 127 && color.b < 127) {
 		bkcore.Audio.play('boost');
 		this.boost = this.boosterSpeed;
+		parent.postMessage({name: "gameEvent", resetTime: true, addTime: 60}, "*")
 	}
 
 	this.movement.z += this.boost * dt;

@@ -1187,6 +1187,7 @@ function getBonus() {
     carrot.angle += Math.PI / 2;
     //speed*=.95;
     monsterPosTarget += .025;
+    parent.postMessage({name: "gameEvent", resetTime: true, addTime: 60}, "*")
 
 }
 
