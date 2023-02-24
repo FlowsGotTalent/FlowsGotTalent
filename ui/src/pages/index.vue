@@ -26,17 +26,35 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
       </VCol>
     </VRow>
     <VRow>
-      <VCol cols="12" clsss="mt-6">
+      <VCol cols="6" clsss="mt-6 d-flex align-stretch">
 
-        <h3>Get 3x free plays each day, connect you're wallet and start playing Flow's got Talent!</h3>
-        <VBtn to="/play" color="primary" outlined class="ma-4">
-          <VIcon
-            start
-            icon="mdi-star-shooting-outline"
-          />
-          Start Playing
-        </VBtn>
-        <p class="mt-4">Get 3X free plays each day (Prizes & Option to buy additional plays coming soon!)</p>
+        <VCard>
+          <VCardText>
+            <h3>Connect your Flow or Dapper Wallet and start playing -><br> Flow's got Talent!</h3>
+            <VBtn to="/play" color="primary" outlined class="ma-4">
+              <VIcon
+                start
+                icon="mdi-star-shooting-outline"
+              />
+              Start Playing
+            </VBtn>
+          </VCardText>
+        </VCard>
+      </VCol>
+      <VCol cols="6" clsss="mt-6 d-flex align-stretch">
+
+        <VCard>
+          <VCardText>
+            <h3>New to NFTs? Or don't have have Flow PFP (Profile Picture)? <br>We got you!</h3>
+            <VBtn to="/mint" color="success" outlined class="ma-4">
+              <VIcon
+                start
+                icon="mdi-gift"
+              />
+              Free FGT NFT
+            </VBtn>
+          </VCardText>
+        </VCard>
       </VCol>
     </VRow>
   </div>

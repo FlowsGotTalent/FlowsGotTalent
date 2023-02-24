@@ -1,31 +1,45 @@
-<script setup>
+<script>
+export default {
+  props: ['display1Name', 'display2Name', 'player1Address', 'player2Address', 'admin'],
+  data() {
+    return {
+      gameName: false,
+      gameTitle: '',
+      currentRound: 2,
+      won: false,
+    }
+  },
+  methods: {
+    nextRound(round) {
+      localStorage.setItem('fgtCurrentRound', round)
+    }
+  }
+}
 </script>
+<style>
+</style>
 
 <template>
-  <VRow class="match-height">
+  <div class="mx-auto text-center">
+    <h2>
+      {{ gameTitle }}
+    </h2>
+  </div>
+  <VRow>
     <VCol
       cols="12"
-      md="4"
+      md="12"
       class="text-center mx-auto"
     >
-      <v-chip size="large" color="primary">Round 1</v-chip>
-      <h2>
-        Scissors Paper Rock
-      </h2>
-      <p>Best of 3</p>
+      <div class="text-gray-600 text-center mx-auto">
+
+        <main class="container mx-auto">
+          game here
+        </main>
+
+      </div>
     </VCol>
   </VRow>
-  <VRow class="match-height">
-    <VCol
-      cols="12"
-      md="4"
-      class="text-center mx-auto"
-    >
-      <v-chip size="large" color="primary">Round 1</v-chip>
-      <h2>
-        Scissors Paper Rock
-      </h2>
-      <p>Best of 3</p>
-    </VCol>
-  </VRow>
+
 </template>
+

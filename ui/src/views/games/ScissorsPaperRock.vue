@@ -1,4 +1,4 @@
-# Based of https://github.com/carla-ng/vue-rock-paper-scissors
+# Based off https://github.com/carla-ng/vue-rock-paper-scissors
 <script setup>
 import {ref, computed, onMounted} from 'vue';
 
@@ -105,7 +105,17 @@ onMounted(() => {
 </script>
 <script>
 export default {
+  name: "SPR",
+  emits: ['newRound'],
   props: ['display1Name', 'display2Name', 'player1Address', 'player2Address', 'admin'],
+  methods: {
+    nextRound(round) {
+      localStorage.setItem('fgtCurrentRound', round)
+      localStorage.getItem('fgtCurrentRound') || 1
+      console.log("round", round)
+      this.$emit("newRound", round)
+    }
+  }
 }
 </script>
 <style>
@@ -131,12 +141,12 @@ img.spr {
         <main class="container mx-auto">
           <div v-if="wins>=1" class="ma-4">
             <h3 class="text-success">Great, you won the round! 🏅 You're progressing to round 2!</h3>
-            <VBtn color="success" class="ma-4">Play round 2: Cooking</VBtn>
+            <VBtn color="success" class="ma-4" @click="nextRound(2)">Play round 2: Cooking</VBtn>
           </div>
           <div v-else-if="losses >=1">
             <h3 class="text-error">To bad, so sad! 😔</h3>
             <p>You got out foxed 🦊 this time.</p>
-            <VBtn color="success" class="ma-4">Play round 2: Cooking</VBtn>
+            <VBtn color="success" class="ma-4" @click="nextRound(2)">Play round 2: Cooking</VBtn>
           </div>
           <div v-else>
             <div v-if="choice === null" class="text-lg mb-2 text-center mx-auto">

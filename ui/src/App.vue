@@ -53,6 +53,7 @@ export default {
 body, h1, h2, h3, h4, h5, h6, p, a, li, span, div, input, textarea, button {
   font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 h1, h2, h3, h4, h5, h6, p, input, textarea {
   font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #595656;
@@ -100,6 +101,10 @@ footer.v-footer.v-theme--light.rounded-md {
 
 .v-list-item--nav .v-list-item-title {
   line-height: 20px !important;
+}
+
+.v-card {
+  box-shadow: 0px 0px 0px 4px #9c7fb352;
 }
 </style>
 

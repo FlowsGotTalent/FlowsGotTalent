@@ -1,6 +1,7 @@
 <script setup>
 import playerProfile from '@/views/games/PlayerProfile.vue'
 import spr from '@/views/games/ScissorsPaperRock.vue'
+import cookingBurger from '@/views/games/CookingBurger.vue'
 import pfpPicker from '@/views/user-interface/PfPicker.vue'
 import {uniqueNamesGenerator, adjectives, animals} from 'unique-names-generator';
 import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
@@ -8,6 +9,18 @@ import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
 </script>
 <script>
 export default {
+  name: "PlayComponent",
+  components: {
+    pfpPicker
+  },
+  setup() {
+    const title = ref("");
+    const changeRound = (round) => {
+      console.log("fire")
+      this.currentRound = round;
+    };
+    return {round, changeRound};
+  },
   data() {
     return {
       match: false,
@@ -36,6 +49,30 @@ export default {
     if (!this.display1Name || !this.pfp1) {
       this.showNameDialog = true
     }
+    this.currentRound = localStorage.getItem('fgtCurrentRound') || 1
+    if (this.currentRound == undefined) {
+      localStorage.setItem('fgtCurrentRound', 1)
+      this.currentRound = 1
+    }
+
+    var eventMethod = window.addEventListener
+      ? "addEventListener"
+      : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod === "attachEvent"
+      ? "onmessage"
+      : "message";
+
+    const $this = this
+    eventer(messageEvent, function (e) {
+      console.log(e)
+      if (e.data.name === "gameEvent" || e.message === "gameEvent") {
+        console.log('Game Finished');
+        if (e.data.nextRound) {
+          $this.setNextRound(e.data.nextRound)
+        }
+      }
+    })
   },
   methods: {
     checkIsMobile() {
@@ -44,6 +81,12 @@ export default {
       } else {
         this.isMobile = true
       }
+    },
+    setNextRound(round) {
+      localStorage.setItem('fgtCurrentRound', round)
+      this.currentRound = round
+      console.log(this.currentRound);
+      this.$forceUpdate()
     },
     getMatch() {
       //todo: get match from server
@@ -88,7 +131,8 @@ export default {
       md="2"
       xs="6"
     >
-      <playerProfile  @click="showNameDialog=!showNameDialog" class="player1main" :you="true" :displayName="display1Name" :displayAddress="player1Address"/>
+      <playerProfile @click="showNameDialog=!showNameDialog" class="player1main" :you="true" :displayName="display1Name"
+                     :displayAddress="player1Address"/>
     </VCol>
     <VCol cols="12" xs="12" md="6" lg="6" id="gameDiv" class="order-last">
       <VCard class="bg-white pa-4 ma-0">
@@ -116,11 +160,24 @@ export default {
             this will be limited to those being 'lent' out to FGT).</p>
         </div>
         <div v-else>
-          <div v-if="!currentRound || currentRound==1">
+          {{ currentRound }}
+          <div v-if="!currentRound || currentRound==1 || currentRound===undefined">
             <div class="text-center">
               <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
             </div>
-            <spr :display2Name="display2Name" :admin="admin"/>
+            <spr :display2Name="display2Name" :admin="admin" @newRound="(i) => currentRound = i"/>
+          </div>
+          <div v-if="currentRound==2">
+            <div class="text-center">
+              <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
+            </div>
+            <cookingBurger :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+          <div v-if="currentRound==3">
+            <div class="text-center">
+              <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
+            </div>
+            Game 3
           </div>
         </div>
       </VCard>
