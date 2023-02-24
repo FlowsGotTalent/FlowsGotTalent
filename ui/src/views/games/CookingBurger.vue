@@ -172,11 +172,11 @@ export default {
     >
       <div class="text-gray-600 text-center mx-auto">
 
-        <main class="container mx-auto">
+        <main class="container mx-auto mt-3">
 
           <!--Burger-->
           <div class="burger">
-            <iframe width="100%" height="540px" frameborder="0"  scrolling="no" src="/games/BurgerGame/index.html"></iframe>
+            <iframe id="gameIframe" width="100%" height="540px" frameborder="0"  scrolling="no" src="/games/BurgerGame/index.html"></iframe>
           </div>
 
         </main>

@@ -1,11 +1,20 @@
 <script setup>
+import pfpPicker from '@/views/user-interface/PfPicker.vue'
 import playerProfile from '@/views/games/PlayerProfile.vue'
 import spr from '@/views/games/ScissorsPaperRock.vue'
 import cookingBurger from '@/views/games/CookingBurger.vue'
-import pfpPicker from '@/views/user-interface/PfPicker.vue'
+import tower from '@/views/games/TowerGame.vue'
+import rabbit from '@/views/games/RabbitRun.vue'
+import muso from '@/views/games/MusoMadness.vue'
+import farmlife from '@/views/games/FarmLife.vue'
+import flowviator from '@/views/games/FlowViator.vue'
+import memorymuse from '@/views/games/MemoryMuse.vue'
+import flowracer from '@/views/games/FlowRacer.vue'
 import {uniqueNamesGenerator, adjectives, animals} from 'unique-names-generator';
 import authV1Tree2 from '@/assets/images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@/assets/images/pages/auth-v1-tree.png'
+import MemoryMuse from "@/views/games/MemoryMuse.vue";
+import FlowViator from "@/views/games/FlowViator.vue";
 </script>
 <script>
 export default {
@@ -34,6 +43,11 @@ export default {
       currentRound: 1,
       showNameDialog: false,
       isMobile: true,
+      timerCount: 60,
+      timeLeft: 'high',
+      resetAllowed: true,
+      showTimeup: false,
+      showNext: false,
     }
   },
   mounted() {
@@ -70,6 +84,11 @@ export default {
         console.log('Game Finished');
         if (e.data.nextRound) {
           $this.setNextRound(e.data.nextRound)
+        } else {
+          if (e.data?.resetTime) {
+            console.log('reset time');
+            $this.timerCount = 60
+          }
         }
       }
     })
@@ -82,11 +101,21 @@ export default {
         this.isMobile = true
       }
     },
+    resetGame(reload = true) {
+      if (reload) {
+        document.getElementById('gameIframe').contentWindow.location.reload();
+      }
+      this.showNext = false
+      this.showTimeup = false
+      this.timerCount = 60
+    },
     setNextRound(round) {
+      this.timerCount = 60
       localStorage.setItem('fgtCurrentRound', round)
       this.currentRound = round
       console.log(this.currentRound);
       this.$forceUpdate()
+      this.showNext = true
     },
     getMatch() {
       //todo: get match from server
@@ -106,6 +135,43 @@ export default {
       }
     },
   },
+  watch: {
+    currentRound: {
+      handler(value) {
+        console.log(value)
+
+      }
+      ,
+      immediate: true // This ensures the watcher is triggered upon creation
+    },
+
+    timerCount: {
+      handler(value) {
+
+        if (value > 0) {
+          setTimeout(() => {
+            if (value == 0) {
+              this.timeLeft = ''
+            } else if (value > 15) {
+              this.timeLeft = 'high'
+            } else if (value > 5) {
+              this.timeLeft = 'mid'
+            } else if (value < 5) {
+              this.timeLeft = 'low'
+            }
+            this.timerCount--;
+          }, 1000);
+        } else {
+          this.timerCount = 0
+          this.timeLeft = ''
+          this.showTimeup = true
+        }
+
+      },
+      immediate: true // This ensures the watcher is triggered upon creation
+    }
+
+  }
 }
 </script>
 
@@ -117,7 +183,7 @@ export default {
         <div>
           Status:
           <v-chip size="x-small">Game in Progress</v-chip>
-          <v-chip size="x-small">Round 1/10</v-chip>
+          <v-chip size="x-small">Round {{ currentRound }}/10</v-chip>
           <v-icon icon="mdi-signal-cellular-outline" class="ms-2"></v-icon>
         </div>
 
@@ -160,25 +226,40 @@ export default {
             this will be limited to those being 'lent' out to FGT).</p>
         </div>
         <div v-else>
-          {{ currentRound }}
-          <div v-if="!currentRound || currentRound==1 || currentRound===undefined">
-            <div class="text-center">
-              <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
-            </div>
+          <div>
+            <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
+            <v-chip class="float-right timer" :class="timeLeft">{{ timerCount }}</v-chip>
+          </div>
+          <div v-if=" !currentRound || currentRound==1 || currentRound===undefined">
             <spr :display2Name="display2Name" :admin="admin" @newRound="(i) => currentRound = i"/>
           </div>
           <div v-if="currentRound==2">
-            <div class="text-center">
-              <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
-            </div>
             <cookingBurger :display2Name="display2Name" :admin="admin" :key="currentRound "/>
           </div>
           <div v-if="currentRound==3">
-            <div class="text-center">
-              <v-chip size="large" color="primary">Round {{ currentRound }}</v-chip>
-            </div>
-            Game 3
+            <tower :display2Name="display2Name" :admin="admin" :key="currentRound "/>
           </div>
+          <div v-if="currentRound==4">
+            <rabbit :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+          <div v-if="currentRound==5">
+            <muso :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+          <div v-if="currentRound==6">
+            <farmlife :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+          <div v-if="currentRound==7">
+            <flowviator :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+          <div v-if="currentRound==8">
+            <memorymuse :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+          <div v-if="currentRound==9">
+            <flowracer :display2Name="display2Name" :admin="admin" :key="currentRound "/>
+          </div>
+        </div>
+        <div v-if="match" class="mx-auto ma-1 text-center d-block">
+          <VBtn v-if="resetAllowed" @click="resetGame()" color="default" size="small">Retry</VBtn>
         </div>
       </VCard>
     </VCol>
@@ -224,6 +305,41 @@ export default {
   </VRow>
 
   <VDialog
+    v-model="showNext"
+    max-width="80%"
+    width="300px"
+    :close-on-back="false"
+    :close-on-content-click="false"
+  >
+    <VCard>
+      <VCard-text>
+        <div class="text-center mx-auto">
+          <h4>Congrats you completed round {{ currentRound - 1 }}!</h4>
+          <h1>🎉</h1><br>
+          <VBtn @click="resetGame(false)" color="success">Continue</VBtn>
+        </div>
+      </VCard-text>
+    </VCard>
+  </VDialog>
+  <VDialog
+    v-model="showTimeup"
+    width="300px"
+    max-width="80%"
+    :close-on-back="false"
+    :close-on-content-click="false"
+  >
+    <VCard>
+      <VCard-text>
+        <div class="text-center mx-auto">
+          <h4>Oh no too slow!</h4>
+          <h1>🐌</h1><br>
+          <VBtn @click="resetGame()">Retry</VBtn>
+        </div>
+      </VCard-text>
+    </VCard>
+  </VDialog>
+
+  <VDialog
     v-model="showNameDialog"
     width="800px"
     max-width="80%"
@@ -255,6 +371,35 @@ export default {
   }
   100% {
     transform: rotateY(360deg);
+  }
+}
+
+iframe#gameIframe {
+  border-radius: 4px !important;
+}
+
+.timer.high {
+  border: 2px solid #56ca00;
+  background: #edf8e7;
+  opacity: 0.7;
+}
+
+.timer.mid {
+  border: 2px solid #4588d3 !important;
+  background: #cfe4ee !important;
+  opacity: 0.6;
+}
+
+.timer.low {
+  border: 2px solid #ca6363 !important;
+  background: #f3f8fa !important;
+  opacity: 0.7;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
   }
 }
 </style>

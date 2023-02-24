@@ -42,8 +42,10 @@ function goodBurger() {
                 info.addClass("correct");
                 if (ingredientsTitle == "flag") {
                     burgerCircle.addClass("finished");
-                    infoText.text("Good Job, that burger looks delicious!...");
-                    parent.postMessage({name: "gameEvent", time: 1, nextRound: 3}, "*")
+                    infoText.text("Good Job, that burger looks delicious!...")
+                    setTimeout(function () {
+                        parent.postMessage({name: "gameEvent", time: 1, nextRound: 3}, "*")
+                    }, 3000);
                 }
             } else {
                 info.removeClass("correct");

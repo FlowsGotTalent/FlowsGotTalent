@@ -31,3 +31,12 @@ Firebase
 `firebase int`
 ## Deploy
 `firebase deploy`
+
+
+//todo add credits to website footer
+mini games
+https://codepen.io/shshaw/pen/gLdpGv
+https://codepen.io/Yakudoo/pen/YGxYej
+https://codepen.io/ste-vg/full/ppLQNW
+https://codepen.io/Yakudoo/pen/YGxYej
+http://hexgl.bkcore.com/
