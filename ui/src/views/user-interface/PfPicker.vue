@@ -8,7 +8,7 @@ const api = "https://rest-mainnet.onflow.org";
 fcl.config().put("accessNode.api", api);
 
 
-const cadence = `
+const Flovatar = `
         import Flovatar from 0x921ea449dffec68a
 
         pub fun main(address:Address) : [Flovatar.FlovatarData] {
@@ -64,11 +64,12 @@ export default {
     if (!this.user.pfp) {
       this.changePFP()
     }
+    this.cadence = Flovatar  // todo default, anddrop down to filter user's collection
   },
   methods: {
     changePFP() {
       this.viewNFTS = true
-      this.getNFTS(cadence)
+      this.getNFTS(this.cadence )
     },
     async getNFTS(cadenceQuery) {
       const idsResponse = await fcl.send([
