@@ -1,17 +1,6 @@
 <script setup>
-import upgradeBannerDark from '@/assets/images/pro/upgrade-banner-dark.png'
-import upgradeBannerLight from '@/assets/images/pro/upgrade-banner-light.png'
 import logo from '@/assets/logo.png'
-import {
-  VerticalNavLink,
-  VerticalNavSectionTitle,
-} from '@layouts'
-import {useTheme} from 'vuetify'
 
-const vuetifyTheme = useTheme()
-const upgradeBanner = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
-})
 </script>
 <script>
 export default {
@@ -84,19 +73,6 @@ export default {
   </ul>
 
   <!-- 👉 illustration -->
-  <a
-    v-if="!address"
-    href="/play"
-    rel="noopener noreferrer"
-  >
-    <img
-      :src="upgradeBanner"
-      alt="upgrade-banner"
-      transition="scale-transition"
-      class="upgrade-banner mx-auto"
-      style="max-width: 230px"
-    >
-  </a>
 </template>
 
 <style lang="scss">

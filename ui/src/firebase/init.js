@@ -1,8 +1,12 @@
+
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import 'firebase/auth'
-import "firebase/analytics";
+import 'firebase/analytics'
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: process.env.VUE_APP_FBDB_APIKEY,
     authDomain: process.env.VUE_APP_FBDB_authDomain,
@@ -12,11 +16,11 @@ const firebaseConfig = {
     appId: process.env.VUE_APP_FBDB_appId,
     measurementId: process.env.VUE_APP_FBDB_measurementId,
 }
+
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 firebase.analytics()
-// test on local emulator
-// firebase.functions().useEmulator('localhost', 4000)
-// console.log('***** USING EMULATED FUNCTIONS!')
+
+
 const db = firebaseApp.firestore()
 export default db

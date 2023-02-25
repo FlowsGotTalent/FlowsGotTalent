@@ -1,13 +1,18 @@
-import { createVuetify } from 'vuetify'
+import {createVuetify} from 'vuetify'
 import defaults from './defaults'
-import { icons } from './icons'
 import theme from './theme'
 
 // Styles
-import '@core/scss/libs/vuetify/index.scss'
+import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
+import {md2} from 'vuetify/blueprints'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
 export default createVuetify({
-  defaults,
-  icons,
-  theme,
+    blueprint: md2,
+    defaults,
+    theme,
+    components,
+    directives,
 })

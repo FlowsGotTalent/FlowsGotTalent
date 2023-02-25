@@ -1,17 +1,10 @@
 <script setup>
 import avatar1 from '@/assets/images/avatars/avatar-1.png'
-import avatar2 from '@/assets/images/avatars/avatar-2.png'
-import avatar3 from '@/assets/images/avatars/avatar-3.png'
-import avatar4 from '@/assets/images/avatars/avatar-4.png'
-
 
 const avatars = [
   avatar1,
-  avatar2,
-  avatar3,
-  avatar4,
 ]
-const isCardDetailsVisible = ref(false)
+
 </script>
 <script>
 export default {
@@ -19,36 +12,48 @@ export default {
   data() {
     return {
       cardBg1: 'https://source.unsplash.com/300x200/?abstract green',
+      avatarBg1: 'https://source.unsplash.com/300x200/?abstract green',
       cardBg2: '',
       rating: false,
+      user: {
+        name: '',
+        pfp: `https://flovatar.com/api/image/${Math.floor(1000 + Math.random() * 3000)}`,
+      },
     }
   },
   mounted() {
-    if (!this.you) {
+    if (this.you) {
+      if (localStorage.getItem('flowPfp') || false) {
+        this.user.pfp = localStorage.getItem('flowPfp')
+      }
+    } else {
       this.cardBg2 = 'https://source.unsplash.com/300x200/?abstract blue'
     }
-
   },
-  methods: {}
+  methods: {
+  }
 }
 </script>
 <template>
   <div>
     <h2 class="text-center mx-auto" v-if="you">
-      <v-chip size="large" color="success" variant="tonal" class="font-weight-semibold">Player 1 (You)
+      <v-chip size="large" variant="tonal" class="font-weight-semibold">Player 1 (You)
       </v-chip>
     </h2>
     <h2 class="text-center mx-auto" v-else>
-      <v-chip size="large" color="info" variant="tonal" class="font-weight-semibold">Player 2</v-chip>
+      <v-chip size="large" variant="tonal" class="font-weight-semibold">Player 2</v-chip>
     </h2>
     <VCard class="mt-3">
       <VImg v-if="you" :src="cardBg1"/>
       <VImg v-else :src="cardBg2"/>
-      <div class="pfp mx-4 mb-0 pb-0">
+      <div class="pfp mx-4 mb-1 pb-1 mx-auto text-center">
         <VAvatar
           size="100%"
-          class="avatar-center mx-auto text-center "
-          :image="avatar1"
+          class="avatar-center mx-auto text-center mt-5 elevation-8 bg-white bg-1"
+          :class="{'p1': you, 'p2': !you}"
+          :image="user.pfp"
+          variant="elevated"
+          style="max-width: 130px; cursor: pointer;"
         />
       </div>
 
@@ -67,14 +72,13 @@ export default {
             class="me-3"
             density="compact"
           />
-          <span>5 Star | 98 reviews</span>
         </div>
 
-        <!--  Mutual Friends -->
-        <div class="mt-0 mx-auto d-block text-center">
+        <div class="mt-0 mx-auto text-center d-none">
           <p class="font-weight-medium text-center">Other PFP/Collections</p>
-          <div class="v-avatar-group mx-auto text-center">
+          <div class="v-avatar-group mx-auto text-center mt-1">
             <VAvatar
+              class="ma-1"
               v-for="avatar in avatars"
               :key="avatar"
               :image="avatar"
@@ -97,6 +101,23 @@ export default {
 .pfp {
   position: relative;
   margin-top: -120px !important;
+}
+
+.pfp .avatar-center.p2 {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.bg-white.bg-1.p2 {
+  background-color: #e8f6ff !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3da10f", endColorstr="#18fc09", GradientType=1);
+  box-shadow: 0px 0px 2px #47525d !important;
+}
+
+.bg-white.bg-1 {
+  background-color: #edf8e7 !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3da10f", endColorstr="#18fc09", GradientType=1);
+  box-shadow: 0px 0px 2px #47525d !important;
 }
 </style>
 

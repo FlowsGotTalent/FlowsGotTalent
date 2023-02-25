@@ -19,12 +19,14 @@ export default {
       address: '',
       user: {
         name: '',
+        pfp: '',
       },
     }
   },
   mounted() {
     this.address = localStorage.getItem('flowAddress')
     this.user.name = localStorage.getItem('flowName')
+    this.user.pfp = localStorage.getItem('flowPfp') || avatar1
   },
 }
 </script>
@@ -36,7 +38,7 @@ export default {
       color="primary"
       variant="tonal"
     >
-      <VImg :src="avatar1"/>
+      <VImg :src="user.pfp"/>
 
       <!-- SECTION Menu -->
       <VMenu
@@ -56,7 +58,7 @@ export default {
                     size="40"
                     variant="tonal"
                   >
-                    <VImg :src="avatar1"/>
+                    <VImg :src="user.pfp"/>
                   </VAvatar>
                 </VBadge>
               </VListItemAction>

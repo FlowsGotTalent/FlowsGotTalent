@@ -1,61 +1,85 @@
 <script setup>
-import AnalyticsAward from '@/views/dashboards/analytics/AnalyticsAward.vue'
-import AnalyticsBarCharts from '@/views/dashboards/analytics/AnalyticsBarCharts.vue'
-import AnalyticsDatatable from '@/views/dashboards/analytics/AnalyticsDatatable.vue'
-import AnalyticsDepositWithdraw from '@/views/dashboards/analytics/AnalyticsDepositWithdraw.vue'
 import AnalyticsSalesByCountries from '@/views/dashboards/analytics/AnalyticsSalesByCountries.vue'
-import AnalyticsTotalEarning from '@/views/dashboards/analytics/AnalyticsTotalEarning.vue'
-import AnalyticsTotalProfitLineCharts from '@/views/dashboards/analytics/AnalyticsTotalProfitLineCharts.vue'
-import AnalyticsTransactions from '@/views/dashboards/analytics/AnalyticsTransactions.vue'
-import AnalyticsWeeklyOverview from '@/views/dashboards/analytics/AnalyticsWeeklyOverview.vue'
-import CardStatisticsVertical from '@core/components/CardStatisticsVertical.vue'
-
-const totalProfit = {
-  title: 'Total Profit',
-  color: 'secondary',
-  icon: 'mdi-poll',
-  stats: '$25.6k',
-  change: 42,
-  subtitle: 'Weekly Project',
-}
-const newProject = {
-  title: 'New Project',
-  color: 'primary',
-  icon: 'mdi-briefcase-variant-outline',
-  stats: '862',
-  change: -18,
-  subtitle: 'Yearly Project',
-}
+import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
 </script>
 
 <template>
+
+  <div class="mx-auto text-center ma-8">
+
+    <VRow>
+      <VCol cols="12">
+        <h1>Welcome to Flow's Got Talent</h1>
+        <p>Choose your fave PFP as your in-game character, level up and go for glory!</p>
+      </VCol>
+    </VRow>
+    <VRow>
+      <VCol>
+        <p>Play up-to 10 rounds of knockout mini-games testing your speed, witt, dexterity and luck! </p>
+      </VCol>
+    </VRow>
+    <VRow>
+      <VCol>
+        Images
+      </VCol>
+      <VCol>
+      </VCol>
+    </VRow>
+    <VRow>
+      <VCol cols="6" clsss="mt-6 d-flex align-stretch">
+
+        <VCard>
+          <VCardText>
+            <h3>Connect your Flow or Dapper Wallet and start playing -><br> Flow's got Talent!</h3>
+            <VBtn to="/play" color="primary" outlined class="ma-4">
+              <VIcon
+                start
+                icon="mdi-star-shooting-outline"
+              />
+              Start Playing
+            </VBtn>
+          </VCardText>
+        </VCard>
+      </VCol>
+      <VCol cols="6" clsss="mt-6 d-flex align-stretch">
+
+        <VCard>
+          <VCardText>
+            <h3>New to NFTs? Or don't have have Flow PFP (Profile Picture)? <br>We got you!</h3>
+            <VBtn to="/mint" color="success" outlined class="ma-4">
+              <VIcon
+                start
+                icon="mdi-gift"
+              />
+              Free FGT NFT
+            </VBtn>
+          </VCardText>
+        </VCard>
+      </VCol>
+    </VRow>
+  </div>
+
   <VRow class="match-height">
-    <VCol
-      cols="12"
-      md="4"
-    >
-      <AnalyticsAward/>
-    </VCol>
 
     <VCol
       cols="12"
-      md="8"
+      md="12"
     >
-      <AnalyticsTransactions/>
+      <CompatibleProjects/>
     </VCol>
-
     <VCol
-      cols="12"
-      md="4"
+      cols="6"
+      md="6"
     >
+      LeaderBoard
       <AnalyticsSalesByCountries/>
     </VCol>
-
     <VCol
-      cols="12"
-      md="8"
+      cols="6"
+      md="6"
     >
-      <AnalyticsDepositWithdraw/>
+      Recent Activity
+      <AnalyticsSalesByCountries/>
     </VCol>
   </VRow>
 </template>
