@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       startLogin: false,
-      address: '',
+      address: '0x2a0eccae942667be',
       viewNFTS: false,
       nftList: [],
       loading: false,
@@ -50,8 +50,7 @@ export default {
     }
   },
   mounted() {
-    // '0x2a0eccae942667be' flovatar founder account to test with many
-    this.address = localStorage.getItem('flowAddress') || ''
+    // this.address = localStorage.getItem('flowAddress') || ''
     if (localStorage.getItem('flowName') || false) {
       this.user.name = localStorage.getItem('flowName') || ''
     }
@@ -62,10 +61,10 @@ export default {
       this.user.pfp = localStorage.getItem('flowPfp') || ''
     }
 
+    this.cadence = Flovatar  // todo default, anddrop down to filter user's collection
     if (!this.user.pfp) {
       this.changePFP()
     }
-    this.cadence = Flovatar  // todo default, anddrop down to filter user's collection
   },
   methods: {
     changePFP() {
@@ -130,6 +129,7 @@ export default {
     </div>
     <h2 v-else class="text-center ma-4"> Choose PFP / Character</h2>
     <v-chip>Flow Address: {{ address }}</v-chip>
+    <br>
     <v-sheet
       v-if="viewNFTS"
       class="mx-auto ma-5"
