@@ -236,7 +236,7 @@ footer.v-footer.v-theme--light.rounded-md {
       <v-navigation-drawer v-model="drawer">
         <v-list nav>
           <v-list-item prepend-icon="mdi-home" title="Home" to="/"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-heart" title="Train | Revive|  Thrive"
+          <v-list-item prepend-icon="mdi-account-heart" title="Train | Revive | Thrive"
                        to="/train-revive-thrive"></v-list-item>
           <v-list-item prepend-icon="mdi-star-shooting" title="Enter Competition"
                        to="/play"></v-list-item>
@@ -244,6 +244,8 @@ footer.v-footer.v-theme--light.rounded-md {
                        to="/leaderboards"></v-list-item>
           <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Compatible Projects"
                        to="/projects  "></v-list-item>
+          <v-list-item prepend-icon="mdi-store" title="Store"
+                       to="/coming-soon  "></v-list-item>
         </v-list>
 
         <a
