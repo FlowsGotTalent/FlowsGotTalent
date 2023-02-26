@@ -1,5 +1,5 @@
 <script setup>
-import AnalyticsSalesByCountries from '@/views/dashboards/analytics/AnalyticsSalesByCountries.vue'
+import AnalyticsSalesByCountries from '@/views/dashboards/AnalyticsSalesByCountries.vue'
 import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
 </script>
 

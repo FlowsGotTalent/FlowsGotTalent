@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale:1, user-scalable=no'/>
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>Flow's Got Talent</title>
+    <style>
+        img.preload-logo {
+            margin: auto;
+            display: block;
+            width: 200px;
+            padding-bottom: 20px;
+        }
+
+        p.preload-text {
+            font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-align: center;
+            margin: 30px;
+        }
+
+        .loader-overlay {
+            background-color: rgba(229, 209, 244, 1) 77%);
+            background: radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
+            height: 100%;
+            width: 100%;
+            transition: opacity .5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .loader-container {
+            height: 75px;
+            width: 250px;
+            margin: 0 auto;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+        }
+
+        .block1, .block2, .block3, .block4 {
+            height: 50px;
+            width: 12px;
+            background-color: #b573ce;
+            display: inline-block;
+            transform: translateY(25px);
+            border: 1px solid #fff;
+        }
+
+        @keyframes blockMove {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .block1 {
+            margin-left: 90px;
+            animation: blockMove .5s ease infinite alternate;
+        }
+
+        .block2 {
+            animation: blockMove .5s ease .08s infinite alternate;
+        }
+
+        .block3 {
+            animation: blockMove .5s ease .16s infinite alternate;
+        }
+
+        .block4 {
+            animation: blockMove .5s ease .24s infinite alternate;
+        }
+
+    </style>
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+</noscript>
+<div id="app">
+    <div class="loader-overlay">
+        <div class="loader-container">
+            <img src="/logo.png" class="preload-logo"/>
+            <div class="block1"></div>
+            <div class="block2"></div>
+            <div class="block3"></div>
+            <div class="block4"></div>
+            <p class="preload-text">Loading...</p>
+        </div>
+    </div>
+</div>
+<!-- built files will be auto injected -->
+</body>
+</html>

@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       startLogin: false,
-      address: '0x2a0eccae942667be',
+      address: '',
       viewNFTS: false,
       nftList: [],
       loading: false,
@@ -50,7 +50,8 @@ export default {
     }
   },
   mounted() {
-    // this.address = localStorage.getItem('flowAddress') || ''
+    // '0x2a0eccae942667be' flovatar founder account to test with many
+    this.address = localStorage.getItem('flowAddress') || ''
     if (localStorage.getItem('flowName') || false) {
       this.user.name = localStorage.getItem('flowName') || ''
     }
@@ -69,7 +70,7 @@ export default {
   methods: {
     changePFP() {
       this.viewNFTS = true
-      this.getNFTS(this.cadence )
+      this.getNFTS(this.cadence)
     },
     async getNFTS(cadenceQuery) {
       const idsResponse = await fcl.send([

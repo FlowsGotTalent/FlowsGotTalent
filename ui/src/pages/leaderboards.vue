@@ -1,14 +1,7 @@
 <script setup>
 import AnalyticsAward from '@/views/dashboards/analytics/AnalyticsAward.vue'
-import AnalyticsBarCharts from '@/views/dashboards/analytics/AnalyticsBarCharts.vue'
-import AnalyticsDatatable from '@/views/dashboards/analytics/AnalyticsDatatable.vue'
-import AnalyticsDepositWithdraw from '@/views/dashboards/analytics/AnalyticsDepositWithdraw.vue'
-import AnalyticsSalesByCountries from '@/views/dashboards/analytics/AnalyticsSalesByCountries.vue'
-import AnalyticsTotalEarning from '@/views/dashboards/analytics/AnalyticsTotalEarning.vue'
-import AnalyticsTotalProfitLineCharts from '@/views/dashboards/analytics/AnalyticsTotalProfitLineCharts.vue'
+import AnalyticsSalesByCountries from '@/views/dashboards/AnalyticsSalesByCountries.vue.vue'
 import AnalyticsTransactions from '@/views/dashboards/CompatibleProjects.vue'
-import AnalyticsWeeklyOverview from '@/views/dashboards/analytics/AnalyticsWeeklyOverview.vue'
-import CardStatisticsVertical from '@core/components/CardStatisticsVertical.vue'
 
 const totalProfit = {
   title: 'Total Profit',
@@ -39,7 +32,7 @@ const newProject = {
 
     <VCol
       cols="12"
-      md="8"
+      md="4"
     >
       <AnalyticsTransactions/>
     </VCol>
@@ -51,11 +44,5 @@ const newProject = {
       <AnalyticsSalesByCountries/>
     </VCol>
 
-    <VCol
-      cols="12"
-      md="8"
-    >
-      <AnalyticsDepositWithdraw/>
-    </VCol>
   </VRow>
 </template>
