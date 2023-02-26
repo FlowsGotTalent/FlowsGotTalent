@@ -62,12 +62,11 @@ export default {
     },
     authenticate() {
       this.loading = true
+      localStorage.setItem('fgtGuest', '')
       fcl.authenticate().then(user => {
         if (user.addr) {
           this.address = user.addr
           localStorage.setItem('flowAddress', user.addr)
-          console.log(user)
-
           firebase.auth().signInAnonymously().then(() => {
             this.loading = false
             window.location.href = '/play' // force page load to get localstorage
@@ -84,6 +83,11 @@ export default {
       localStorage.setItem('flow', '')
       this.$router.go('/')
 
+    },
+    loginGuest() {
+      // todo create walletless only after key action taken
+      localStorage.setItem('fgtGuest', true)
+      window.location.href = '/play' // force page load to get localstorage
     }
   },
 }
@@ -136,9 +140,9 @@ export default {
         <div v-if="!address">
           <p class="ma-4 text-center mx-auto text-sm">
             Don't own a Flow/Dapper NFT yet?<br>
-            <VBtn size="small" color="default" variant="tonal" outlined class="mt-2"
-                  href="https://www.flowverse.co/categories/marketplaces"
-                  target="_new"> Flow Marketplaces
+            <VBtn color="default" variant="tonal" outlined class="mt-2" @click="loginGuest()" :loading="loading"> Play
+              as a
+              Guest.
             </VBtn>
           </p>
         </div>

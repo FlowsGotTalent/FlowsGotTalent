@@ -55,7 +55,8 @@ export default {
     this.player1Address = localStorage.getItem('flowAddress') || ''
     this.display1Name = localStorage.getItem('flowName') || ''
     this.pfp1 = localStorage.getItem('flowPfp') || ''
-    if (this.player1Address) {
+    this.guest = localStorage.getItem('fgtGuest') || ''
+    if (this.player1Address || this.guest) {
       this.getMatch()
     } else {
       this.$router.push('/login')

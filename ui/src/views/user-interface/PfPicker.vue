@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       startLogin: false,
-      address: '0x2a0eccae942667be',
+      address: '',
       viewNFTS: false,
       nftList: [],
       loading: false,
@@ -50,7 +50,7 @@ export default {
     }
   },
   mounted() {
-    // this.address = localStorage.getItem('flowAddress') || ''
+    this.address = localStorage.getItem('flowAddress') || '' //0x2a0eccae942667be
     if (localStorage.getItem('flowName') || false) {
       this.user.name = localStorage.getItem('flowName') || ''
     }
@@ -60,16 +60,22 @@ export default {
     if (localStorage.getItem('flowPfp') || false) {
       this.user.pfp = localStorage.getItem('flowPfp') || ''
     }
+    if (localStorage.getItem('fgtGuest') || false) {
+      this.guest = localStorage.getItem('fgtGuest') || false
+      this.user.pfp = localStorage.getItem('flowPfp') || '/defaultpfp.png'
+    }
 
     this.cadence = Flovatar  // todo default, anddrop down to filter user's collection
-    if (!this.user.pfp) {
+    if (!this.user.pfp && !this.guest) {
       this.changePFP()
     }
   },
   methods: {
     changePFP() {
       this.viewNFTS = true
-      this.getNFTS(this.cadence)
+      if (!this.guest) {
+        this.getNFTS(this.cadence)
+      }
     },
     async getNFTS(cadenceQuery) {
       const idsResponse = await fcl.send([
@@ -128,7 +134,7 @@ export default {
       <v-btn color="info" @click="changePFP" class="mb-4">Change</v-btn>
     </div>
     <h2 v-else class="text-center ma-4"> Choose PFP / Character</h2>
-    <v-chip>Flow Address: {{ address }}</v-chip>
+    <v-chip>Flow Address: {{ address || 'Guest' }}</v-chip>
     <br>
     <v-sheet
       v-if="viewNFTS"

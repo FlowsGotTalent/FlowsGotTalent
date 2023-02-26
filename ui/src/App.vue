@@ -19,6 +19,7 @@ export default {
     group: null,
     startLogin: false,
     address: '',
+    guest: false,
     user: {
       name: '',
       pfp: '',
@@ -29,6 +30,7 @@ export default {
     this.address = localStorage.getItem('flowAddress')
     this.user.name = localStorage.getItem('flowName')
     this.user.pfp = localStorage.getItem('flowPfp') || avatar1
+    this.guest = localStorage.getItem('fgtGuest')
   },
   methods: {
     checkIsMobile() {
@@ -129,14 +131,14 @@ footer.v-footer.v-theme--light.rounded-md {
 
 
         <VSpacer/>
-        <VBtn v-if="!address" to="/play" color="primary" variant="tonal" outlined class="mr-4">
+        <VBtn v-if="!address && !guest " to="/play" color="primary" variant="tonal" outlined class="mr-4">
           <VIcon
             start
             icon="mdi-star-shooting-outline"
           />
           Start Playing
         </VBtn>
-        <div v-if="address" class="mr-5">
+        <div v-if="address|| guest" class="mr-5">
           <VBadge v-bind="avatarBadgeProps">
             <VAvatar
               style="cursor: pointer;"

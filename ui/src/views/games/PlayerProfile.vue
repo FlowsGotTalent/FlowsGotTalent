@@ -62,7 +62,7 @@ export default {
         <v-chip v-else size="large" color="info">{{ displayName }}</v-chip>
       </h4>
       <div class="mx-auto text-center">
-        <v-chip size="small" outlined class="mx-2 mt-2 mb-0 pb-0">{{ displayAddress }}</v-chip>
+        <v-chip size="small" outlined class="mx-2 mt-2 mb-0 pb-0">{{ displayAddress || 'Guest' }}</v-chip>
       </div>
       <VCardText class="position-relative mt-0 p0">
         <div v-if="rating">
