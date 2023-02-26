@@ -1,19 +1,19 @@
 <script setup>
 const projectList = [
   {
-    title: 'Sales',
+    title: '1',
     icon: 'mdi-trending-up',
   },
   {
-    title: 'Sales',
+    title: '2',
     icon: 'mdi-trending-up',
   },
   {
-    title: 'Sales',
+    title: '3',
     icon: 'mdi-trending-up',
   },
   {
-    title: 'Sales',
+    title: '4',
     icon: 'mdi-trending-up',
   }
 ]
@@ -22,7 +22,7 @@ const projectList = [
 <template>
   <VCard>
     <VCardItem>
-      <VCardTitle>Compatible Projects</VCardTitle>
+      <VCardTitle class="text-white">Compatible Projects</VCardTitle>
     </VCardItem>
 
     <VCardText>
@@ -34,6 +34,7 @@ const projectList = [
               :key="item.title"
               cols="6"
               sm="3"
+              class="text-white"
             >
               <div class="d-flex align-center">
                 <div class="me-3">
@@ -46,6 +47,7 @@ const projectList = [
                     <VIcon
                       size="24"
                       :icon="item.icon"
+                      class="text-white"
                     />
                   </VAvatar>
                 </div>
@@ -61,7 +63,7 @@ const projectList = [
           </VRow>
         </VCol>
         <VCol>
-          <p class="text-center mx-auto mb-3">Represent your tribe. Play for fun or play to win or play.</p>
+          <p class="text-center mx-auto mb-3 text-white">Represent your tribe. Play for fun or play to win or play.</p>
           <VImg :src="require('@/assets/images/landingpage/supported.webp')">
           </VImg>
         </VCol>

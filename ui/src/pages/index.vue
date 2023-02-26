@@ -8,19 +8,19 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
   <div class="mx-auto text-center my-8">
     <v-container fluid>
       <VRow>
-        <VCol cols="12">
-          <h1>Welcome to Flow's Got Talent</h1>
-          <p>Choose your fave PFP as your in-game character, level up and go for glory!</p>
+        <VCol cols="12"  >
+          <h1 class="text-white">Welcome to Flow's Got Talent</h1>
+          <p class="text-white">Choose your fave PFP as your in-game character, level up and go for glory!</p>
         </VCol>
       </VRow>
       <VRow>
         <VCol>
-          <p>Play up-to 10 rounds of knockout mini-games testing your speed, witt, dexterity and luck! </p>
+          <p class="text-white">Play up-to 10 rounds of knockout mini-games testing your speed, witt, dexterity and luck! </p>
         </VCol>
       </VRow>
       <VRow>
         <VCol>
-          Images
+           // todo add screen shots
         </VCol>
         <VCol>
         </VCol>
@@ -29,7 +29,7 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
         <VCol cols="12" md="6" class="mt-6">
           <VCard>
             <VCardText>
-              <h3>Connect your Flow or Dapper Wallet and start playing.</h3>
+              <h3 class="text-white">Connect your Flow or Dapper Wallet and start playing.</h3>
               <p class="ma-2">The best projects from around the flowverse gather for epic battles</p>
               <VBtn to="/play" color="success" outlined class="ma-4">
                 <VIcon
@@ -44,7 +44,7 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
         <VCol cols="12" md="6" class="mt-6">
           <VCard>
             <VCardText>
-              <h3>New to NFTs? Or don't have have Flow PFP. We got you!</h3>
+              <h3 class="text-white">New to NFTs? Or don't have have Flow PFP. We got you!</h3>
               <p class="ma-2">Play as a Guest for your chance to win your first Flow NFT</p>
               <VBtn to="/login" color="primary" outlined class="ma-4">
                 <VIcon
@@ -71,16 +71,18 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
     <VCol
       cols="6"
       md="6"
+      class="text-white"
     >
       LeaderBoard
-      <AnalyticsSalesByCountries/>
+      <AnalyticsSalesByCountries class="d-none"/>
     </VCol>
     <VCol
       cols="6"
       md="6"
+      class="text-white"
     >
       Recent Activity
-      <AnalyticsSalesByCountries/>
+      <AnalyticsSalesByCountries class="d-none"/>
     </VCol>
   </VRow>
 </template>

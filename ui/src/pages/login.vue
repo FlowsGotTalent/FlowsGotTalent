@@ -140,7 +140,7 @@ export default {
         <div v-if="!address">
           <p class="ma-4 text-center mx-auto text-sm">
             Don't own a Flow/Dapper NFT yet?<br>
-            <VBtn color="default" variant="tonal" outlined class="mt-2" @click="loginGuest()" :loading="loading"> Play
+            <VBtn color="default" outlined class="mt-2" @click="loginGuest()" :loading="loading"> Play
               as a
               Guest.
             </VBtn>
