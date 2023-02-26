@@ -221,7 +221,7 @@ img.spr {
             </div>
 
             <VDivider class="my-6"/>
-            <VBtn v-if="wins<=3" disabled color="default" variant="tonal">Next Game: Archery</VBtn>
+            <VBtn v-if="wins<=3" disabled color="default" variant="tonal" class="mb-4">Next Game: Cooking</VBtn>
           </div>
           <div v-if="admin">
             <div class="text-lg">

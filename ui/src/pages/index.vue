@@ -5,58 +5,59 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
 
 <template>
 
-  <div class="mx-auto text-center ma-8">
-
-    <VRow>
-      <VCol cols="12">
-        <h1>Welcome to Flow's Got Talent</h1>
-        <p>Choose your fave PFP as your in-game character, level up and go for glory!</p>
-      </VCol>
-    </VRow>
-    <VRow>
-      <VCol>
-        <p>Play up-to 10 rounds of knockout mini-games testing your speed, witt, dexterity and luck! </p>
-      </VCol>
-    </VRow>
-    <VRow>
-      <VCol>
-        Images
-      </VCol>
-      <VCol>
-      </VCol>
-    </VRow>
-    <VRow>
-      <VCol cols="6" clsss="mt-6 d-flex align-stretch">
-
-        <VCard>
-          <VCardText>
-            <h3>Connect your Flow or Dapper Wallet and start playing -><br> Flow's got Talent!</h3>
-            <VBtn to="/play" color="primary" outlined class="ma-4">
-              <VIcon
-                start
-                icon="mdi-star-shooting-outline"
-              />
-              Start Playing
-            </VBtn>
-          </VCardText>
-        </VCard>
-      </VCol>
-      <VCol cols="6" clsss="mt-6 d-flex align-stretch">
-
-        <VCard>
-          <VCardText>
-            <h3>New to NFTs? Or don't have have Flow PFP (Profile Picture)? <br>We got you!</h3>
-            <VBtn to="/mint" color="success" outlined class="ma-4">
-              <VIcon
-                start
-                icon="mdi-gift"
-              />
-              Free FGT NFT
-            </VBtn>
-          </VCardText>
-        </VCard>
-      </VCol>
-    </VRow>
+  <div class="mx-auto text-center my-8">
+    <v-container fluid>
+      <VRow>
+        <VCol cols="12">
+          <h1>Welcome to Flow's Got Talent</h1>
+          <p>Choose your fave PFP as your in-game character, level up and go for glory!</p>
+        </VCol>
+      </VRow>
+      <VRow>
+        <VCol>
+          <p>Play up-to 10 rounds of knockout mini-games testing your speed, witt, dexterity and luck! </p>
+        </VCol>
+      </VRow>
+      <VRow>
+        <VCol>
+          Images
+        </VCol>
+        <VCol>
+        </VCol>
+      </VRow>
+      <VRow>
+        <VCol cols="12" md="6" class="mt-6">
+          <VCard>
+            <VCardText>
+              <h3>Connect your Flow or Dapper Wallet and start playing.</h3>
+              <p class="ma-2">The best projects from around the flowverse gather for epic battles</p>
+              <VBtn to="/play" color="success" outlined class="ma-4">
+                <VIcon
+                  start
+                  icon="mdi-star-shooting-outline"
+                />
+                <span class="d-xs-none">Start</span> Play<span class="d-xs-none">ing</span>
+              </VBtn>
+            </VCardText>
+          </VCard>
+        </VCol>
+        <VCol cols="12" md="6" class="mt-6">
+          <VCard>
+            <VCardText>
+              <h3>New to NFTs? Or don't have have Flow PFP. We got you!</h3>
+              <p class="ma-2">Play as a Guest for your chance to win your first Flow NFT</p>
+              <VBtn to="/login" color="primary" outlined class="ma-4">
+                <VIcon
+                  start
+                  icon="mdi-gift"
+                />
+                <span class="d-xs-none">Start</span> Play<span class="d-xs-none">ing</span>
+              </VBtn>
+            </VCardText>
+          </VCard>
+        </VCol>
+      </VRow>
+    </v-container>
   </div>
 
   <VRow class="match-height">

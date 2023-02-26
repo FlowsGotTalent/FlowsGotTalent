@@ -1,3 +1,5 @@
+parent.postMessage({name: "gameEvent", score: 0, resetTime:true}, "*")
+
 var myCards = document.getElementById('container');
 var resultsArray = [];
 var counter = 0;

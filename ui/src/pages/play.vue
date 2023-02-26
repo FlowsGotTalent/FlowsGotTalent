@@ -118,12 +118,13 @@ export default {
       this.showTimeup = false
       this.timerCount = 60
     },
-    resetGame(reload = true) {
+    resetGameAll() {
       localStorage.setItem('wins', '')
       localStorage.setItem('draws', '')
       localStorage.setItem('losses', '')
       localStorage.setItem('score', '')
       localStorage.setItem('fgtCurrentRound', '')
+      window.location.href = '/play' // force page load to get localstorage
     },
     setNextRound(round) {
       this.timerCount = this.timerCount + 60
