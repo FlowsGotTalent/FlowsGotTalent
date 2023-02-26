@@ -109,11 +109,21 @@ export default {
     },
     resetGame(reload = true) {
       if (reload) {
-        document.getElementById('gameIframe').contentWindow.location.reload();
+        const iframe = document.getElementById('gameIframe')
+        if (iframe?.src) {
+          document.getElementById('gameIframe').contentWindow.location.reload();
+        }
       }
       this.showNext = false
       this.showTimeup = false
       this.timerCount = 60
+    },
+    resetGame(reload = true) {
+      localStorage.setItem('wins', '')
+      localStorage.setItem('draws', '')
+      localStorage.setItem('losses', '')
+      localStorage.setItem('score', '')
+      localStorage.setItem('fgtCurrentRound', '')
     },
     setNextRound(round) {
       this.timerCount = this.timerCount + 60
@@ -188,10 +198,21 @@ export default {
     <v-layout class="py-4 my-4 mt-0 pt-0" style="height: 40px;">
       <v-system-bar color="primary" style="height: 40px; border-radius: 4px">
         <div>
-          Status:
-          <v-chip size="x-small">Game in Progress</v-chip>
-          <v-chip size="x-small">Round {{ currentRound }}/10</v-chip>
-          <v-icon icon="mdi-signal-cellular-outline" class="ms-2"></v-icon>
+          Lives:
+          <v-icon icon="mdi-heart-outline"></v-icon>
+          <v-icon icon="mdi-heart-outline"></v-icon>
+          <v-icon icon="mdi-heart-outline"></v-icon>
+          <span class="ml-1">Status:</span>
+          <v-chip size="x-small">In Progress</v-chip>
+          <span class="ml-1">Round:</span>
+          <v-chip size="x-small" class="ml-1">
+            <v-icon v-if="currentRound<2" icon="mdi-signal-cellular-outline"></v-icon>
+            <v-icon v-else-if="currentRound<3" icon="mdi-signal-cellular-1"></v-icon>
+            <v-icon v-else-if="currentRound<6" icon="mdi-signal-cellular-2"></v-icon>
+            <v-icon v-else-if="currentRound<11" icon="mdi-signal-cellular-3"></v-icon>
+            <v-icon v-else icon="mdi-signal-cellular-outline"></v-icon>
+            <span class="ml-1">{{ currentRound }}/10</span>
+          </v-chip>
         </div>
 
       </v-system-bar>
@@ -269,7 +290,9 @@ export default {
           </div>
         </div>
         <div v-if="match" class="mx-auto ma-1 text-center d-block">
-          <VBtn v-if="resetAllowed" @click="resetGame()" color="default" size="small">Retry</VBtn>
+          <VBtn v-if="resetAllowed" @click="resetGame()" color="default" size="small" class="mr-2">Retry Round</VBtn>
+          <VBtn v-if="resetAllowed" @click="resetGameAll()" color="default" size="small" class="ml-2">Reset All Scores
+          </VBtn>
         </div>
       </VCard>
     </VCol>
