@@ -119,6 +119,8 @@ footer.v-footer.v-theme--light.rounded-md {
       <v-app-bar>
         <v-img
           height="52px"
+          class="ml-1 pl-1"
+          style="min-width: 100px;"
           :src="require('@/assets/logo.png')"
         ></v-img>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -236,10 +238,10 @@ footer.v-footer.v-theme--light.rounded-md {
       <v-navigation-drawer v-model="drawer">
         <v-list nav>
           <v-list-item prepend-icon="mdi-home" title="Home" to="/"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-heart" title="Train | Revive | Thrive"
-                       to="/train-revive-thrive"></v-list-item>
           <v-list-item prepend-icon="mdi-star-shooting" title="Enter Competition"
                        to="/play"></v-list-item>
+          <v-list-item prepend-icon="mdi-account-heart" title="Train | Revive | Thrive"
+                       to="/train-revive-thrive"></v-list-item>
           <v-list-item prepend-icon="mdi-crown" title="Leaderboards"
                        to="/leaderboards"></v-list-item>
           <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Compatible Projects"

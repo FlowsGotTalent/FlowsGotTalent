@@ -427,12 +427,12 @@ export default {
 
             </v-chip>
 
-            <v-chip class="mr-2"><span class="ml-1">Food:</span>90%
+            <v-chip class="mr-2"><span class="ml-1">Food:</span>10%
               <v-icon icon="mdi-food-apple" size="small" class="ml-1"></v-icon>
 
             </v-chip>
 
-            <v-chip class="mr-2"><span class="ml-1">Play:</span>60%
+            <v-chip class="mr-2"><span class="ml-1">Play:</span>80%
               <v-icon icon="mdi-controller" size="small" class="ml-1"></v-icon>
             </v-chip>
 
