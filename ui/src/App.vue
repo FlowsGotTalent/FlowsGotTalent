@@ -81,6 +81,10 @@ h1, h2, h3, h4, h5, h6, p, input, textarea {
   color: #6c757d;
 }
 
+.fgt-left-nav .v-list-item__prepend {
+    width: 35px;
+}
+
 footer.v-footer.v-theme--light.rounded-md {
   background: transparent;
   position: absolute;
@@ -119,7 +123,7 @@ footer.v-footer.v-theme--light.rounded-md {
       <v-app-bar>
         <v-img
           height="52px"
-          class="ml-1 pl-1"
+          class="ml-2 pl-1"
           style="min-width: 100px;"
           :src="require('@/assets/logo.png')"
         ></v-img>
@@ -235,7 +239,7 @@ footer.v-footer.v-theme--light.rounded-md {
 
       </v-app-bar>
 
-      <v-navigation-drawer v-model="drawer">
+      <v-navigation-drawer v-model="drawer" class="fgt-left-nav">
         <v-list nav>
           <v-list-item prepend-icon="mdi-home" title="Home" to="/"></v-list-item>
           <v-list-item prepend-icon="mdi-star-shooting" title="Enter Competition"
