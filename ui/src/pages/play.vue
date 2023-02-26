@@ -220,10 +220,9 @@ export default {
     </v-layout>
   </div>
   <VRow class="match-height">
-    <VCol cols="0" md="1" lg="1" xs="0"></VCol>
     <VCol
       cols="6"
-      md="2"
+      md="3"
       xs="6"
     >
       <playerProfile @click="showNameDialog=!showNameDialog" class="player1main" :you="true" :displayName="display1Name"
@@ -300,7 +299,7 @@ export default {
 
     <VCol
       cols="6"
-      md="2"
+      md="3"
       xs="6"
       class="order-md-last"
     >

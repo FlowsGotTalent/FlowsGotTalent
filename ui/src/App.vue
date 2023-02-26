@@ -50,8 +50,6 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
-
 body, h1, h2, h3, h4, h5, h6, p, a, li, span, div, input, textarea, button {
   font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -62,11 +60,42 @@ h1, h2, h3, h4, h5, h6, p, input, textarea {
 }
 
 .v-main {
-  background: rgb(230, 220, 237);
-  background: -moz-radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
-  background: -webkit-radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
-  background: radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e6dced", endColorstr="#e5d1f4", GradientType=1);
+  background: #8a49ba;
+  background: -moz-radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+  background: -webkit-radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+  background: radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#956cb1", endColorstr="#8a49ba", GradientType=1);
+}
+
+.v-card.v-theme--light, .v-system-bar.v-theme--light.bg-primary {
+  background: #ffffff42;
+  border: none !important;
+  border-radius: 5px;
+}
+
+.v-system-bar.v-theme--light.bg-primary .v-chip.v-theme--light {
+  background: #8a4ab99c !important;
+}
+
+.v-system-bar.v-theme--light.bg-primary {
+  background: #ffffff42 !important;
+  border: none !important;
+  border-radius: 5px;
+}
+
+.v-dialog .v-overlay__content > .v-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff !important;
+}
+
+.v-card h2, .v-card p {
+  font-weight: 800;
+}
+
+.v-chip {
+  background: #fff !important;
+  font-weight: 800;
 }
 
 .text-xs {
@@ -82,7 +111,7 @@ h1, h2, h3, h4, h5, h6, p, input, textarea {
 }
 
 .fgt-left-nav .v-list-item__prepend {
-    width: 35px;
+  width: 35px;
 }
 
 footer.v-footer.v-theme--light.rounded-md {
