@@ -107,6 +107,10 @@ export default {
         this.isMobile = true
       }
     },
+    skipRound() {
+      this.currentRound += 1
+      this.resetGame(true)
+    },
     resetGame(reload = true) {
       if (reload) {
         const iframe = document.getElementById('gameIframe')
@@ -290,6 +294,8 @@ export default {
           </div>
         </div>
         <div v-if="match" class="mx-auto ma-1 text-center d-block">
+
+          <VBtn v-if="resetAllowed" @click="skipRound()" color="default" size="small" class="mr-2">Skip Round</VBtn>
           <VBtn v-if="resetAllowed" @click="resetGame()" color="default" size="small" class="mr-2">Retry Round</VBtn>
           <VBtn v-if="resetAllowed" @click="resetGameAll()" color="default" size="small" class="ml-2">Reset All Scores
           </VBtn>
