@@ -50,7 +50,7 @@ export default {
     }
   },
   mounted() {
-    this.address = localStorage.getItem('flowAddress') || '' //0x2a0eccae942667be
+    this.address = '0x2a0eccae942667be' // localStorage.getItem('flowAddress') || ''
     if (localStorage.getItem('flowName') || false) {
       this.user.name = localStorage.getItem('flowName') || ''
     }
@@ -66,7 +66,7 @@ export default {
     }
 
     this.cadence = Flovatar  // todo default, anddrop down to filter user's collection
-    if (!this.user.pfp && !this.guest) {
+    if (!this.user.pfp || !this.guest) {
       this.changePFP()
     }
   },
@@ -78,6 +78,7 @@ export default {
       }
     },
     async getNFTS(cadenceQuery) {
+      console.log('get Nfts')
       const idsResponse = await fcl.send([
         fcl.script`${cadenceQuery}`,
         fcl.args([fcl.arg(this.address, t.Address)]),
@@ -178,7 +179,7 @@ export default {
       style="max-width:200px;"
       v-model="user.email"
       label="Email"></v-text-field>
-    <p class="text-xs ml-5 text-center text-muted">Add you email so we can contact you for prizes/</p>
+    <p class="text-xs ml-5 text-center text-muted">Add your email so we can contact you for prizes.</p>
     <div class="text-center mx-auto mt-6">
       <VBtn @click="save" :loading="loading" size="large">Save</VBtn>
     </div>

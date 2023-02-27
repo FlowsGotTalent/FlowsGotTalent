@@ -64,7 +64,7 @@ const projectList = [
         </VCol>
         <VCol>
           <p class="text-center mx-auto mb-3 text-white">Represent your tribe. Play for fun or play to win or play.</p>
-          <VImg :src="require('@/assets/images/landingpage/supported.webp')">
+          <VImg :src="require('@/assets/images/landingpage/compatible.png')">
           </VImg>
         </VCol>
       </VRow>

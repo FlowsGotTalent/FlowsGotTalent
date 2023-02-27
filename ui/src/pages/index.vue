@@ -15,7 +15,7 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
       </VRow>
       <VRow>
         <VCol>
-          <p class="text-white">Play up-to 10 rounds of knockout mini-games testing your speed, witt, dexterity and luck! </p>
+          <p class="text-white">Play knockout mini-games testing your speed, witt, dexterity and luck! </p>
         </VCol>
       </VRow>
       <VRow>
@@ -30,7 +30,7 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
           <VCard>
             <VCardText>
               <h3 class="text-white">Connect your Flow or Dapper Wallet and start playing.</h3>
-              <p class="ma-2">The best projects from around the flowverse gather for epic battles</p>
+              <p class="ma-2 text-white">The best projects from around the flowverse gather for epic battles</p>
               <VBtn to="/play" color="success" outlined class="ma-4">
                 <VIcon
                   start
@@ -45,7 +45,7 @@ import CompatibleProjects from '@/views/dashboards/CompatibleProjects.vue'
           <VCard>
             <VCardText>
               <h3 class="text-white">New to NFTs? Or don't have have Flow PFP. We got you!</h3>
-              <p class="ma-2">Play as a Guest for your chance to win your first Flow NFT</p>
+              <p class="ma-2 text-white">Play as a Guest for your chance to win your first Flow NFT</p>
               <VBtn to="/login" color="primary" outlined class="ma-4">
                 <VIcon
                   start

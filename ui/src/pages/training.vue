@@ -4,7 +4,7 @@ export default {
   data: () => ({
     plantNo: 3,
     bedStatus: 'empty',
-    showCharacter: true,
+    showCharacter: false,
   }),
   mounted() {
     this.init()
@@ -186,7 +186,10 @@ export default {
       let player = new Player($player, limits);
       player.setColor('WHITE');
 
-      window.addEventListener('load', () => player.show());
+      window.addEventListener('load', () => {
+        player.show()
+        this.showCharacter = true
+      });
 
       window.addEventListener('resize', () => {
         let limits = document.body.getBoundingClientRect();
@@ -415,7 +418,7 @@ export default {
         <h2 class="text-white ma-4 pa-0 ml-6 float-left">Train | Revive | Thrive</h2>
         <v-system-bar class="mt-2 pt-4 mr-2"
                       style="height: 30px; border-radius: 4px; background:transparent; color: #eeeeee">
-          <div>
+          <div class="train-status">
 
             <v-chip class="mr-2"><span class="ml-1"> Happiness:</span>90%
               <v-icon icon="mdi-emoticon-happy" size="small" class="ml-1"></v-icon>
@@ -513,7 +516,7 @@ export default {
   position: absolute;
   bottom: 20px;
   z-index: 9;
-  margin-left:40px;
+  margin-left: 40px;
   transform: scaleX(-1);
   filter: blur(0.7px);
 }
@@ -820,5 +823,9 @@ div#fridge canvas {
   border-left: 0;
   padding: 0.5rem;
   border-radius: 0 4px 4px 0;
+}
+
+.train-status .v-chip {
+  background: #8e5db0 !important;
 }
 </style>
