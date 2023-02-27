@@ -108,12 +108,12 @@ export default {
       <VImg :src="logo" class="d-block mx-auto mt-0 pt-0" style="max-width: 250px"></VImg>
       <VCardText class="pt-2">
         <div v-if="!address">
-          <h6 class="text-h6 font-weight-semibold mb-1 text-center">
+          <h6 class="text-h6 font-weight-semibold mb-1 text-center text-white">
             👋🏻 Connect your wallet to get started!
           </h6>
         </div>
         <div v-else class="mx-auto text-center mt-4">
-          <h3>✅ Connected to Flow.</h3>
+          <h3 class="text-white">✅ Connected to Flow.</h3>
         </div>
       </VCardText>
 
@@ -138,7 +138,7 @@ export default {
           </div>
         </div>
         <div v-if="!address">
-          <p class="ma-4 text-center mx-auto text-sm">
+          <p class="ma-4 text-center mx-auto text-sm text-white">
             Don't own a Flow/Dapper NFT yet?<br>
             <VBtn color="default" outlined class="mt-2" @click="loginGuest()" :loading="loading"> Play
               as a

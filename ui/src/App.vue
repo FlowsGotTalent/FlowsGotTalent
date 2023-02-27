@@ -92,6 +92,9 @@ h1, h2, h3, h4, h5, h6, p, input, textarea {
 .v-card h2, .v-card p {
   font-weight: 800;
 }
+footer.v-footer.v-theme--light.rounded-md p {
+  color: #ffffff80 !important;
+}
 
 .v-chip {
   background: #fff !important;
@@ -277,7 +280,7 @@ footer.v-footer.v-theme--light.rounded-md {
                        to="/train-revive-thrive"></v-list-item>
           <v-list-item prepend-icon="mdi-crown" title="Leaderboards"
                        to="/leaderboards"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Compatible Projects"
+          <v-list-item class="d-none" prepend-icon="mdi-account-supervisor-circle " title="Compatible Projects"
                        to="/projects  "></v-list-item>
           <v-list-item prepend-icon="mdi-store" title="Store"
                        to="/coming-soon  "></v-list-item>
