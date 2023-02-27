@@ -186,9 +186,10 @@ export default {
       let player = new Player($player, limits);
       player.setColor('WHITE');
 
+      const $this = this
       window.addEventListener('load', () => {
         player.show()
-        this.showCharacter = true
+        $this.showCharacter = true
       });
 
       window.addEventListener('resize', () => {

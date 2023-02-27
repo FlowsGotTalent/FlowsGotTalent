@@ -138,7 +138,7 @@ img.spr {
     >
       <div class="text-gray-600 text-center mx-auto">
 
-        <main class="container mx-auto">
+        <main class="container mx-auto sbr-con">
           <div v-if="wins>=1" class="ma-4">
             <h3 class="text-success">Great, you won the round! 🏅 You're progressing to round 2!</h3>
             <VBtn color="success" class="ma-4" @click="nextRound(2)">Play round 2: Cooking</VBtn>
@@ -150,7 +150,7 @@ img.spr {
           </div>
           <div v-else>
             <div v-if="choice === null" class="text-lg mb-2 text-center mx-auto">
-              <p clsss="ma-0 pa-0">Make your choice, winner decides who play's first:</p>
+              <p clsss="ma-0 pa-0">Tap your choice, winner decides who play's first:</p>
             </div>
 
             <div v-if="choice === null" class="flex items-center justify-center">
