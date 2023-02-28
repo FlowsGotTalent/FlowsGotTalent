@@ -1,5 +1,6 @@
 "use strict";
 console.clear();
+parent.postMessage({name: "gameEvent", score: 0, resetTime:true}, "*")
 
 class Stage {
     constructor() {

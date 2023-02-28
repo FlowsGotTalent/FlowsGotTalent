@@ -1,4 +1,4 @@
-//Good burger
+parent.postMessage({name: "gameEvent", score: 0, resetTime:true}, "*")
 function goodBurger() {
     let ingredientsTitle = "",
         meatBtn = $(".js-meat"),

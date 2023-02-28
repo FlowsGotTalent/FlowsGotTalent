@@ -9,7 +9,7 @@ import db from '@/firebase/init'
 
 loadFonts()
 const app = createApp(App)
-app.use(vuetify)
-app.use(createPinia())
-app.use(router)
+    .use(vuetify)
+    .use(createPinia())
+    .use(router)
 app.mount('#app')

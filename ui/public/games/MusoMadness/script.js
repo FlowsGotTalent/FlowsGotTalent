@@ -1,3 +1,5 @@
+parent.postMessage({name: "gameEvent", score: 0, resetTime:true}, "*")
+
 console.clear();
 
 var renderCalls = [];

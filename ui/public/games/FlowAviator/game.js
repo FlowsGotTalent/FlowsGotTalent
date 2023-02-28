@@ -1,3 +1,4 @@
+parent.postMessage({name: "gameEvent", score: 0, resetTime:true}, "*")
 function createAirplaneMesh() {
     const mesh = new THREE.Object3D()
 

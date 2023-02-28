@@ -1,4 +1,6 @@
-//THREEJS RELATED VARIABLES 
+parent.postMessage({name: "gameEvent", score: 0, resetTime:true}, "*")
+
+//THREEJS RELATED VARIABLES
 
 var scene, camera, fieldOfView, aspectRatio, nearPlane, farPlane, gobalLight, shadowLight, backLight, renderer,
     container, controls, clock;
