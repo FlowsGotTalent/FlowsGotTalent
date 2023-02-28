@@ -9,6 +9,7 @@ export default {
   mounted() {
     this.init()
     this.fridge()
+    this.showCharacter = true
   },
   methods: {
     init() {
@@ -188,7 +189,6 @@ export default {
 
       const $this = this
       window.addEventListener('load', () => {
-        player.show()
         $this.showCharacter = true
       });
 

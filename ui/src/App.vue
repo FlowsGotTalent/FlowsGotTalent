@@ -147,9 +147,6 @@ footer.v-footer.v-theme--light.rounded-md {
 </style>
 
 <template>
-  <metainfo>
-    <template v-slot:title="{ content }">{{ content ? `${content} | SITE_NAME` : `SITE_NAME` }}</template>
-  </metainfo>
   <VApp>
     <v-layout>
       <v-app-bar>

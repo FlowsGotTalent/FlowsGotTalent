@@ -4,6 +4,7 @@ import login from '@/pages/login.vue'
 import play from '@/pages/play.vue'
 import settings from '@/pages/account-settings.vue'
 import training from '@/pages/training.vue'
+import demo from '@/pages/demo.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -32,6 +33,11 @@ const router = createRouter({
             path: '/train-revive-thrive',
             name: 'train-revive-thrive',
             component: training,
+        },
+        {
+            path: '/demo',
+            name: 'demo',
+            component: demo,
         },
     ],
     scrollBehavior() {
