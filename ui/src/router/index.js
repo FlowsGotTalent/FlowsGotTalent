@@ -39,6 +39,11 @@ const router = createRouter({
             name: 'demo',
             component: demo,
         },
+        {
+            path: '/contact-us',
+            name: 'contact-us',
+            component: play,
+        },
     ],
     scrollBehavior() {
         return {top: 0}
