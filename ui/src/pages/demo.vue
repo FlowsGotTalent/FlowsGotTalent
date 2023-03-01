@@ -24,7 +24,7 @@ export default {
         image: require('@/assets/images/pitch/pitch-5.jpg'),
       },
       {
-        image: require('@/assets/images/pitch/pitch-6.jpg'),
+        image: require('@/assets/images/pitch/pitch-7.jpg'),
       },
       {
         video: {
@@ -33,7 +33,7 @@ export default {
         },
       },
       {
-        image: require('@/assets/images/pitch/pitch-7.jpg'),
+        image: require('@/assets/images/pitch/pitch-6.jpg'),
       },
       {
         image: require('@/assets/images/pitch/pitch-8.jpg'),
@@ -68,7 +68,13 @@ export default {
         max-width="800px"
       >
 
-        <vueper-slides :slide-ratio="5 / 9" ref="vueperslides">
+        <vueper-slides :slide-ratio="5 / 9" infinite="false" ref="vueperslides" fade>
+          <template #arrow-left>
+            <h1 class="text-white mr-10"><i class="mdi mdi-arrow-left-bold-outline"/></h1>
+          </template>
+          <template #arrow-right>
+            <h1 class="text-white"><i class="mdi mdi-arrow-right-bold-outline"/></h1>
+          </template>
           <vueper-slide
             v-for="(slide, i) in slides"
             :key="i"
@@ -119,6 +125,18 @@ video.vueperslide__video {
   color: #fff;
   font-size: 10px;
   opacity: 0.8;
+}
+
+.vueperslides__arrow--prev, .vueperslides--rtl .vueperslides__arrow--next {
+  right: auto;
+  left: -1.0em;
+  font-size: 20px !important;
+}
+
+.vueperslides__arrow--next, .vueperslides--rtl .vueperslides__arrow--right {
+  left: auto;
+  right: -1.0em;
+  font-size: 20px !important;
 }
 
 </style>

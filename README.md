@@ -33,7 +33,7 @@ Firebase
 `firebase deploy`
 
 
-//todo add credits to website footer
+// todo add credits to website footer
 mini games
 https://codepen.io/shshaw/pen/gLdpGv
 https://codepen.io/Yakudoo/pen/YGxYej
