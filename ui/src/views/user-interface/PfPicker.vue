@@ -16,6 +16,7 @@ const Flovatar = `
         }
     `
 
+// test if works with DSS NFTS
 const UFCstrike = `
   import NonFungibleToken from 0x1d7e57aa55817448
   import UFC_NFT from 0x329feb3ab062d289
@@ -50,7 +51,7 @@ export default {
     }
   },
   mounted() {
-    this.address = '0x2a0eccae942667be' // localStorage.getItem('flowAddress') || ''
+    this.address = '0x2a0eccae942667be' // flovatar account with an awesome collection used to demo!   localStorage.getItem('flowAddress') || ''
     if (localStorage.getItem('flowName') || false) {
       this.user.name = localStorage.getItem('flowName') || ''
     }
@@ -65,7 +66,7 @@ export default {
       this.user.pfp = localStorage.getItem('flowPfp') || '/defaultpfp.png'
     }
 
-    this.cadence = Flovatar  // todo default, anddrop down to filter user's collection
+    this.cadence = Flovatar  // todo default, and drop down to filter user's collection
     if (!this.user.pfp || !this.guest) {
       this.changePFP()
     }
