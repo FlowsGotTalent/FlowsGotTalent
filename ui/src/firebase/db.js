@@ -70,7 +70,6 @@ export default {
     },
 
     async getDapperNfts(userUid, dapperAddress, collectionName, collectionAddress) {
-        let myDapperNFTs = []
         fcl.config({
             'discovery.wallet': 'https://accounts.meetdapper.com/fcl/authn-restricted',
             'discovery.wallet.method': 'POP/RPC',
