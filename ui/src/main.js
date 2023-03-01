@@ -4,7 +4,7 @@ import router from '@/router/index'
 import '@/styles/styles.scss'
 import {createPinia} from 'pinia'
 import {createApp} from 'vue'
-import vuetify from "@/plugins/vuetify/index";
+import vuetify from "@/plugins/vuetify.vue/index";
 import db from '@/firebase/init'
 
 loadFonts()

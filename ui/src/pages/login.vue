@@ -20,7 +20,10 @@ export default {
       type: String,
       default: '#eee'
     },
-
+    createWalletlessUser: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
@@ -85,9 +88,19 @@ export default {
 
     },
     loginGuest() {
-      // todo create walletless only after key action taken
-      localStorage.setItem('fgtGuest', true)
-      window.location.href = '/play' // force page load to get localstorage
+      if (this.createWalletlessUser) {
+        apolloClient.mutate({
+          mutation: 'createWalletlessUser',
+        }).then((res) => {
+          localStorage.setItem('flowAddress', 'JSON.stringify(res.data.address')
+          this.$store.commit('setAddress', 'JSON.stringify(res.data.address')
+          localStorage.setItem('flowName', 'Guest')
+          window.location.href = '/play' // force page load to get localstorage
+        })
+      } else {
+        localStorage.setItem('fgtGuest', true)
+        window.location.href = '/play' // force page load to get localstorage
+      }
     }
   },
 }

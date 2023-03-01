@@ -7,7 +7,8 @@ import * as t from '@onflow/types';
 const api = "https://rest-mainnet.onflow.org";
 fcl.config().put("accessNode.api", api);
 
-
+// hard coded flovatar for demo
+// switch back NFT catalog for production scripts in './cadence' to https://github.com/dapperlabs/nft-catalog
 const Flovatar = `
         import Flovatar from 0x921ea449dffec68a
 
