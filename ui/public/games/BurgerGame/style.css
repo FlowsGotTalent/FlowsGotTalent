@@ -2,7 +2,7 @@ body {
   width: 100%;
   min-height: 100vh;
   display: block;
-  background: #fcd750 url("http://res.cloudinary.com/dnhvfgp9c/image/upload/v1521734636/bcg-pattern.png") repeat;
+  background: #fcd750;
   display: flex;
   align-items: center;
   justify-content: center;

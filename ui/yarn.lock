@@ -7693,6 +7693,11 @@
     "perfect-scrollbar" "^1.5.5"
     "postcss-import" "^12.0.0"
 
+"vueperslides@^3.5.1":
+  "integrity" "sha512-g/Lauv1svlSaERzLNeys0oeLmpDFiXkIa+lxg+lJma6m6wXqJKzKKVIi8Kvc95XPnl42n7PYYJyr0+FMV6WZGw=="
+  "resolved" "https://registry.npmjs.org/vueperslides/-/vueperslides-3.5.1.tgz"
+  "version" "3.5.1"
+
 "vuetify@^3.0.0-beta.4", "vuetify@^3.1.6":
   "integrity" "sha512-4We27L5ksy8esNKfUPWPucEU+M7XJDO2o66zXL5qiBVbALwshcK2CAobLQMx+ALtkLENXAYNH3RzvfAYjTi3Aw=="
   "resolved" "https://registry.npmjs.org/vuetify/-/vuetify-3.1.6.tgz"

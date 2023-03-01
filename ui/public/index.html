@@ -18,11 +18,15 @@
             font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
             text-align: center;
             margin: 30px;
+            color: #dec4f5;
         }
 
         .loader-overlay {
-            background-color: rgba(229, 209, 244, 1) 77%);
-            background: radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
+            background: #8a49ba;
+            background: -moz-radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+            background: -webkit-radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+            background: radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#956cb1", endColorstr="#8a49ba", GradientType=1);
             height: 100%;
             width: 100%;
             transition: opacity .5s ease-in-out;
@@ -44,10 +48,9 @@
         .block1, .block2, .block3, .block4 {
             height: 50px;
             width: 12px;
-            background-color: #b573ce;
+            background-color: #dec4f5;
             display: inline-block;
             transform: translateY(25px);
-            border: 1px solid #fff;
         }
 
         @keyframes blockMove {
@@ -93,5 +96,9 @@
     </div>
 </div>
 <!-- built files will be auto injected -->
+<script src='https://cdn.rawgit.com/mrdoob/three.js/r89/build/three.js'></script>
+<script src='https://cdn.rawgit.com/mrdoob/three.js/r89/examples/js/controls/OrbitControls.js'></script>
+<script src='https://cdn.rawgit.com/mrdoob/three.js/r89/examples/js/loaders/FBXLoader.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js'></script>
 </body>
 </html>

@@ -103,30 +103,30 @@ button:hover {
 /* Icons */
 .correct[data-item=sass],
 .flipped[data-item=sass] {
-    background: url("https://cathydutton.co.uk/images/tech/sass.jpg") left center no-repeat #fff;
+    background: url("img/avatar-1.png") left center no-repeat #fff;
     background-size: contain;
 }
 
 .correct[data-item=gulp],
 .flipped[data-item=gulp] {
-    background: url("https://cathydutton.co.uk/images/tech/gulp.jpg") left center no-repeat #fff;
+    background: url("img/avatar-2.png") left center no-repeat #fff;
     background-size: contain;
 }
 
 .correct[data-item=grunt],
 .flipped[data-item=grunt] {
-    background: url("https://cathydutton.co.uk/images/tech/grunt.jpg") left center no-repeat #fff;
+    background: url("img/avatar-3.png") left center no-repeat #fff;
     background-size: contain;
 }
 
 .correct[data-item=git],
 .flipped[data-item=git] {
-    background: url("https://cathydutton.co.uk/images/tech/git.jpg") left center no-repeat #fff;
+    background: url("img/eleflowtant-alpha-green.png") left center no-repeat #fff;
     background-size: contain;
 }
 
 .correct[data-item=css],
 .flipped[data-item=css] {
-    background: url("https://cathydutton.co.uk/images/tech/css.jpg") left center no-repeat #fff;
+    background: url("img/eleflowtant-alpha-pink.png") left center no-repeat #fff;
     background-size: contain;
 }

@@ -21,6 +21,9 @@ export default {
 </script>
 <style>
 
+iframe#gameIframe {
+  border-radius: 4px !important;
+}
 .score {
   font-family: monospace;
   text-align: center;

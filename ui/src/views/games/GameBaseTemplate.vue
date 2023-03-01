@@ -17,6 +17,9 @@ export default {
 }
 </script>
 <style>
+iframe#gameIframe {
+  border-radius: 4px !important;
+}
 </style>
 
 <template>

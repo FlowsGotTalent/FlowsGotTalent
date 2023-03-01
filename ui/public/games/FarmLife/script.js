@@ -1,4 +1,4 @@
-/*** A lot of debugging work... ***/
+parent.postMessage({name: "gameEvent", score: 0, resetTime:true}, "*")
 
 function elem(id) {
     var e = document.getElementById(id);

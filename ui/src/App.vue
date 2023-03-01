@@ -19,6 +19,7 @@ export default {
     group: null,
     startLogin: false,
     address: '',
+    guest: false,
     user: {
       name: '',
       pfp: '',
@@ -29,6 +30,7 @@ export default {
     this.address = localStorage.getItem('flowAddress')
     this.user.name = localStorage.getItem('flowName')
     this.user.pfp = localStorage.getItem('flowPfp') || avatar1
+    this.guest = localStorage.getItem('fgtGuest')
   },
   methods: {
     checkIsMobile() {
@@ -48,8 +50,6 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
-
 body, h1, h2, h3, h4, h5, h6, p, a, li, span, div, input, textarea, button {
   font-family: 'Tilt Neon', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -60,11 +60,45 @@ h1, h2, h3, h4, h5, h6, p, input, textarea {
 }
 
 .v-main {
-  background: rgb(230, 220, 237);
-  background: -moz-radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
-  background: -webkit-radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
-  background: radial-gradient(circle, rgba(230, 220, 237, 1) 32%, rgba(229, 209, 244, 1) 77%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e6dced", endColorstr="#e5d1f4", GradientType=1);
+  background: #8a49ba;
+  background: -moz-radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+  background: -webkit-radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+  background: radial-gradient(circle, #956cb1 32%, #8a49ba 77%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#956cb1", endColorstr="#8a49ba", GradientType=1);
+}
+
+.v-card.v-theme--light, .v-system-bar.v-theme--light.bg-primary {
+  background: #ffffff42;
+  border: none !important;
+  border-radius: 5px;
+}
+
+.v-system-bar.v-theme--light.bg-primary .v-chip.v-theme--light {
+  background: #8a4ab99c !important;
+}
+
+.v-system-bar.v-theme--light.bg-primary {
+  background: #ffffff42 !important;
+  border: none !important;
+  border-radius: 5px;
+}
+
+.v-dialog .v-overlay__content > .v-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff !important;
+}
+
+.v-card h2, .v-card p {
+  font-weight: 800;
+}
+footer.v-footer.v-theme--light.rounded-md p {
+  color: #ffffff80 !important;
+}
+
+.v-chip {
+  background: #fff !important;
+  font-weight: 800;
 }
 
 .text-xs {
@@ -77,6 +111,10 @@ h1, h2, h3, h4, h5, h6, p, input, textarea {
 
 .text-muted {
   color: #6c757d;
+}
+
+.fgt-left-nav .v-list-item__prepend {
+  width: 35px;
 }
 
 footer.v-footer.v-theme--light.rounded-md {
@@ -109,14 +147,13 @@ footer.v-footer.v-theme--light.rounded-md {
 </style>
 
 <template>
-  <metainfo>
-    <template v-slot:title="{ content }">{{ content ? `${content} | SITE_NAME` : `SITE_NAME` }}</template>
-  </metainfo>
   <VApp>
     <v-layout>
       <v-app-bar>
         <v-img
           height="52px"
+          class="ml-2 pl-1"
+          style="min-width: 100px;"
           :src="require('@/assets/logo.png')"
         ></v-img>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -129,14 +166,14 @@ footer.v-footer.v-theme--light.rounded-md {
 
 
         <VSpacer/>
-        <VBtn v-if="!address" to="/play" color="primary" variant="tonal" outlined class="mr-4">
+        <VBtn v-if="!address && !guest " to="/play" color="primary" variant="tonal" outlined class="mr-4">
           <VIcon
             start
             icon="mdi-star-shooting-outline"
           />
           Start Playing
         </VBtn>
-        <div v-if="address" class="mr-5">
+        <div v-if="address|| guest" class="mr-5">
           <VBadge v-bind="avatarBadgeProps">
             <VAvatar
               style="cursor: pointer;"
@@ -231,15 +268,19 @@ footer.v-footer.v-theme--light.rounded-md {
 
       </v-app-bar>
 
-      <v-navigation-drawer v-model="drawer">
+      <v-navigation-drawer v-model="drawer" class="fgt-left-nav">
         <v-list nav>
           <v-list-item prepend-icon="mdi-home" title="Home" to="/"></v-list-item>
           <v-list-item prepend-icon="mdi-star-shooting" title="Enter Competition"
                        to="/play"></v-list-item>
+          <v-list-item prepend-icon="mdi-account-heart" title="Train | Revive | Thrive"
+                       to="/train-revive-thrive"></v-list-item>
           <v-list-item prepend-icon="mdi-crown" title="Leaderboards"
                        to="/leaderboards"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Compatible Projects"
+          <v-list-item class="d-none" prepend-icon="mdi-account-supervisor-circle " title="Compatible Projects"
                        to="/projects  "></v-list-item>
+          <v-list-item prepend-icon="mdi-store" title="Store"
+                       to="/coming-soon  "></v-list-item>
         </v-list>
 
         <a
