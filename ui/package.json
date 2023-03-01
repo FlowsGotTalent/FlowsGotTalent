@@ -23,6 +23,7 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "events": "^3.3.0",
     "firebase": "^8.10.1",
+    "flow-catalog": "^0.1.1",
     "jwt-decode": "^3.1.2",
     "pinia": "^2.0.22",
     "prismjs": "^1.29.0",

@@ -34,9 +34,16 @@ Firebase
 
 
 // todo add credits to website footer
-mini games
-https://codepen.io/shshaw/pen/gLdpGv
-https://codepen.io/Yakudoo/pen/YGxYej
-https://codepen.io/ste-vg/full/ppLQNW
-https://codepen.io/Yakudoo/pen/YGxYej
+
+Several of the mini-games were no built during the hackathon and either forked/or adapted from the following:
+
+
+Muso Madness https://codepen.io/shshaw/pen/gLdpGv
+
+Rabbit Run https://codepen.io/Yakudoo/pen/YGxYej
+
+Tower Torment https://codepen.io/ste-vg/full/ppLQNW
+
+Floviator https://tympanus.net/Tutorials/TheAviator2/
+
 Flow Racer (Forked) https://github.com/BKcore/HexGL
